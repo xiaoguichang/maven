@@ -3,12 +3,11 @@ package com.xiaogch.maven.springmvc;
 
 import com.xiaogch.maven.springmvc.config.ApplicationConfig;
 import com.xiaogch.maven.springmvc.config.WebConfig;
+import com.xiaogch.maven.springmvc.web.servlet.MyServlet;
 import org.springframework.web.filter.CharacterEncodingFilter;
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
 
-import javax.servlet.FilterRegistration;
-import javax.servlet.ServletContext;
-import javax.servlet.ServletException;
+import javax.servlet.*;
 
 /**
  * Created by Administrator on 2017/6/25 0025.
@@ -18,11 +17,13 @@ public class WebmvcInitializer extends AbstractAnnotationConfigDispatcherServlet
     @Override
     public void onStartup(ServletContext servletContext) throws ServletException {
         super.onStartup(servletContext);
+        registerListener(servletContext);
+        registerServlet(servletContext);
+        registerFilter(servletContext);
     }
 
     @Override
     protected Class<?>[] getRootConfigClasses() {
-        super.onStartup();
         return new Class[]{ApplicationConfig.class};
     }
 
@@ -36,12 +37,17 @@ public class WebmvcInitializer extends AbstractAnnotationConfigDispatcherServlet
         return new String[]{"/"};
     }
 
-    public void registerLi() {
-
+    private void registerFilter(ServletContext servletContext) {
+        FilterRegistration.Dynamic filterDynamic = servletContext.addFilter("encodeFilter" , CharacterEncodingFilter.class);
+        filterDynamic.addMappingForUrlPatterns(null , false , "/*");
     }
 
     private void registerServlet(ServletContext servletContext) {
-        FilterRegistration.Dynamic filterDynamic = servletContext.addFilter("characterEncodingFilter" , new CharacterEncodingFilter());
+        ServletRegistration.Dynamic servletDynamic = servletContext.addServlet("myServlet" , new MyServlet());
+        servletDynamic.addMapping("/myServlet.do");
     }
 
+    private void registerListener(ServletContext servletContext) {
+//        servletContext.addListener("");
+    }
 }
