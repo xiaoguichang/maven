@@ -1,6 +1,7 @@
 package com.xiaogch.maven.springmvc;
 
 
+import ch.qos.logback.ext.spring.web.LogbackConfigListener;
 import com.xiaogch.maven.springmvc.config.ApplicationConfig;
 import com.xiaogch.maven.springmvc.config.WebConfig;
 import com.xiaogch.maven.springmvc.web.servlet.MyServlet;
@@ -48,6 +49,7 @@ public class WebmvcInitializer extends AbstractAnnotationConfigDispatcherServlet
     }
 
     private void registerListener(ServletContext servletContext) {
-//        servletContext.addListener("");
+        servletContext.setInitParameter("logbackConfigLocation" , "classpath:logback.xml");
+        servletContext.addListener(LogbackConfigListener.class);
     }
 }

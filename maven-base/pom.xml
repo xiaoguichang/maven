@@ -16,6 +16,7 @@
 		<mybatis.version>3.4.2</mybatis.version>
 		<mybatis.spring.version>1.3.1</mybatis.spring.version>
 		<spring-security-version>3.2.0.RELEASE</spring-security-version>
+		<logback.version>1.2.3</logback.version>
 	</properties>
 	<dependencyManagement>
 		<dependencies>
@@ -78,11 +79,38 @@
 				<artifactId>spring-test</artifactId>
 				<version>${spring.version}</version>
 			</dependency>
-			
 			<dependency>
-				<groupId>log4j</groupId>
-				<artifactId>log4j</artifactId>
-				<version>1.2.17</version>
+				<groupId>redis.clients</groupId>
+				<artifactId>jedis</artifactId>
+				<version>2.6.2</version>
+			</dependency>
+
+			<dependency>
+				<groupId>ch.qos.logback</groupId>
+				<artifactId>logback-classic</artifactId>
+				<version>${logback.version}</version>
+				<exclusions>
+					<exclusion>
+						<groupId>org.slf4j</groupId>
+						<artifactId>slf4j-api</artifactId>
+					</exclusion>
+				</exclusions>
+			</dependency>
+			<dependency>
+				<groupId>ch.qos.logback</groupId>
+				<artifactId>logback-core</artifactId>
+				<version>${logback.version}</version>
+				<exclusions>
+					<exclusion>
+						<groupId>org.slf4j</groupId>
+						<artifactId>slf4j-api</artifactId>
+					</exclusion>
+				</exclusions>
+			</dependency>
+			<dependency>
+				<groupId>org.logback-extensions</groupId>
+				<artifactId>logback-ext-spring</artifactId>
+				<version>0.1.4</version>
 			</dependency>
 		</dependencies>
 	</dependencyManagement>
@@ -95,5 +123,6 @@
 		<module>../maven-springmvc</module>
         <module>../maven-spring-security</module>
         <module>../maven-activiti</module>
+        <module>../maven-redis</module>
     </modules>
 </project>
