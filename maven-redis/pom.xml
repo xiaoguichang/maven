@@ -19,10 +19,13 @@
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
+            <version>4.12</version>
         </dependency>
     </dependencies>
 
     <artifactId>maven-redis</artifactId>
+    <name>maven-redis</name>
+    <packaging>jar</packaging>
 
 
 </project>
