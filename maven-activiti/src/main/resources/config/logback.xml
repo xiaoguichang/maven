@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+    <configuration>
+        include:引入别的配置文件
+        <include file=""/>
+
+        property:定义属性，后续可以通过${属性名}访问
+        file:属性定义在别的文件
+        source:属性定义在classpath路径下的文件
+        <property file="/***/*.properties"/>
+        <property source="*.properties"/>
+        <property name="" value=""/>
+            ...
+        <property name="" value=""/>
+
+        <appender name="" class="">
+            <layout></layout>
+                   ...
+            <layout></layout>
+
+            <filter></filter>
+                   ...
+            <filter></filter>
+
+            <encoder></encoder>
+                    ...
+            <encoder></encoder>
+        </appender>
+                 ...
+        <appender></appender>
+
+
+        logger:用来定义日志
+        name:具体包名或具体的类
+        level:该日志的级别，TRACE/DEBUG/INFO/WARN/ERROR/ALL/OFF/NULL/INHERITED 可选参数,
+            其中NULL/INHERITED表示强制集成上级级别
+        additivity:是否叠加true，false，可选参数,false日志只会输出到当前日志指定地方，不会输出到父辈日志指定的地方
+        <logger name="" level="TRACE/DEBUG/INFO/WARN/ERROR/ALL/OFF" additivity="true/false">
+            <appender-ref ref=""/>
+                    ...
+            <appender-ref ref=""/>
+        </logger>
+               ...
+        <logger name="" level="TRACE/DEBUG/INFO/WARN/ERROR/ALL/OFF" additivity="">
+            <appender-ref ref=""/>
+                    ...
+            <appender-ref ref=""/>
+        </logger>
+
+        <root level="TRACE/DEBUG/INFO/WARN/ERROR/ALL/OFF">
+            <appender-ref ref=""/>
+                    ...
+            <appender-ref ref=""/>
+        </root>
+
+    </configuration>
+-->
+<configuration>
+    <property name="root.level" value="info"/>
+
+    <appender name="stdout_console" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <appender name="stdout_file" class="ch.qos.logback.core.RollingFileAppender">
+        <file>/home/xiaogch/logs/maven-activiti/root.log</file>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>/home/xiaogch/logs/maven-activiti/root%d{yyyy-MM-dd}.log.gz</fileNamePattern>
+            <!-- 只保留30天历史数据，30天之前的数据删除 -->
+            <maxHistory>7</maxHistory>
+        </rollingPolicy>
+    </appender>
+
+    <root level="DEBUG">
+        <appender-ref ref="stdout_console"/>
+        <appender-ref ref="stdout_file"/>
+    </root>
+</configuration>
