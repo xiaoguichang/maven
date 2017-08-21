@@ -1,4 +1,4 @@
-package org.maven.common;
+package com.xiaogch.maven;
 
 import junit.framework.Test;
 import junit.framework.TestCase;

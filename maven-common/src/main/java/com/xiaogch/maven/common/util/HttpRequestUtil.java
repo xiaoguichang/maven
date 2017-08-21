@@ -18,7 +18,7 @@ import java.util.*;
 
 public class HttpRequestUtil {
 	
-	/** http 请求超市  */
+	/** http 请求timeout  */
 	private final static int timeout = 60000; 
 	
 	/**

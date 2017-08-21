@@ -75,5 +75,5 @@ public class EmailUtil {
 		Assert.notNull(propties.get("mail.smtp.from") , "mail.smtp.from property can't be null");
 		Assert.notNull(propties.get("mail.smtp.user") , "mail.smtp.user property can't be null");
 		Assert.notNull(propties.get("mail.smtp.password") , "mail.smtp.password property can't be null");
-	}	
+	}
 }
