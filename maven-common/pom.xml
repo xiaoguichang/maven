@@ -6,6 +6,7 @@
     <groupId>com.xiaogch.maven</groupId>
     <artifactId>maven-base</artifactId>
     <version>0.0.1-SNAPSHOT</version>
+    <relativePath>../maven-base/pom.xml</relativePath>
   </parent>
   
   <artifactId>maven-common</artifactId>
@@ -14,6 +15,7 @@
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
   </properties>
+
   <dependencies>
     <dependency>
       <groupId>org.springframework</groupId>
@@ -31,7 +33,26 @@
       <groupId>redis.clients</groupId>
       <artifactId>jedis</artifactId>
     </dependency>
-
+    <dependency>
+      <groupId>org.slf4j</groupId>
+      <artifactId>slf4j-api</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>ch.qos.logback</groupId>
+      <artifactId>logback-classic</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>commons-codec</groupId>
+      <artifactId>commons-codec</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.zookeeper</groupId>
+      <artifactId>zookeeper</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.curator</groupId>
+      <artifactId>curator-framework</artifactId>
+    </dependency>
     <dependency>
       <groupId>junit</groupId>
       <artifactId>junit</artifactId>

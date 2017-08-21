@@ -7,6 +7,7 @@
 		<groupId>com.xiaogch.maven</groupId>
 		<artifactId>maven-base</artifactId>
 		<version>0.0.1-SNAPSHOT</version>
+		<relativePath>../maven-base/pom.xml</relativePath>
 	</parent>
 
 	<artifactId>maven-mybatis</artifactId>
@@ -57,10 +58,6 @@
 			<groupId>mysql</groupId>
 			<artifactId>mysql-connector-java</artifactId>
 			<version>5.1.26</version>
-		</dependency>
-		<dependency>
-			<groupId>log4j</groupId>
-			<artifactId>log4j</artifactId>
 		</dependency>
 		<dependency>
 			<groupId>commons-dbcp</groupId>

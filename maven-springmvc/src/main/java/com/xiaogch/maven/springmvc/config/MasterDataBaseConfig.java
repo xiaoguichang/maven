@@ -59,7 +59,7 @@ public class MasterDataBaseConfig {
 
     @Autowired
     @Qualifier("masterDataSource")
-    @Bean("masterSqlSessionFactory")
+    @Bean(name="masterSqlSessionFactory")
     public SqlSessionFactory getSqlSessionFactory(DataSource dataSource) throws Exception {
         SqlSessionFactoryBean sqlSessionFactoryBean = new SqlSessionFactoryBean();
         sqlSessionFactoryBean.setDataSource(dataSource);

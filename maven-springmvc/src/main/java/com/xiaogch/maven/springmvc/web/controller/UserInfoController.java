@@ -48,7 +48,7 @@ public class UserInfoController {
     @RequestMapping("/getUserInfo")
     @ResponseBody
     public String getUserInfo(HttpServletRequest request , HttpServletResponse response ,
-                              @RequestParam(name = "id") Integer id) {
+                              @RequestParam(value = "id") Integer id) {
         Assert.notNull(id , "id can't be null");
         UserInfoBean userInfoBean =  userInfoService.selectById(id);
         if (userInfoBean == null)  {
