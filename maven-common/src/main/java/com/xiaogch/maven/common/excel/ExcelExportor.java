@@ -1,4 +1,4 @@
-package com.shangde.dailyreport.excel;
+package com.xiaogch.maven.common.excel;
 
 import org.apache.poi.hssf.usermodel.HSSFSheet;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
@@ -16,16 +16,6 @@ import java.io.OutputStream;
 import java.util.List;
 
 
-/**
- * ProjectName: dailyreport-util <BR>
- * File name: ExcelExportor.java <BR>
- * Author: guich <BR>
- * Project: dailyreport-util <BR>
- * Version: v 1.0 <BR>
- * Date: 2017/8/16 13:57 <BR>
- * Description: <BR>
- * Function List: <BR>
- */
 public class ExcelExportor {
     Logger logger = LoggerFactory.getLogger(getClass());
 

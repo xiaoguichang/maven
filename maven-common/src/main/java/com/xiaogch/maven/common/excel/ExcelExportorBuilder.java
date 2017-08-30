@@ -1,17 +1,7 @@
-package com.shangde.dailyreport.excel;
+package com.xiaogch.maven.common.excel;
 
 import java.util.List;
 
-/**
- * ProjectName: dailyreport-util <BR>
- * File name: ExcelExportorBuilder.java <BR>
- * Author: guich <BR>
- * Project: dailyreport-util <BR>
- * Version: v 1.0 <BR>
- * Date: 2017/8/16 14:41 <BR>
- * Description: <BR>
- * Function List: <BR>
- */
 public class ExcelExportorBuilder {
 
     private ExcelExportor excelExportor;

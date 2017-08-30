@@ -1,4 +1,4 @@
-package com.shangde.dailyreport.util;
+package com.xiaogch.maven.common.util;
 
 import org.springframework.util.Assert;
 import org.springframework.util.StringUtils;
