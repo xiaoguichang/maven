@@ -1,5 +1,6 @@
 package com.xiaogch.maven.common.redis;
 
+import com.sun.org.apache.regexp.internal.RE;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import redis.clients.jedis.Jedis;
@@ -11,39 +12,70 @@ public class JedisCache {
 
     private JedisPool pool;
 
-    public String get(String key) throws Exception {
+    public JedisCache() {
 
-        Jedis jedis = pool.getResource();
-        try {
-            return jedis.get(key);
-        } catch (Exception e) {
-            logger.error("get from redis exception" , e);
-            throw e;
-        } finally {
-            pool.returnResource(jedis);
-        }
     }
 
-    public boolean set(String key , String value) throws Exception{
-        Jedis jedis = pool.getResource();
-        try {
-            String statusCode = jedis.set(key , value);
-            logger.info("set value to redis result is {}" , statusCode);
-            return false;
-        } catch (Exception e) {
-            logger.error("set value to redis exception" , e);
-            throw e;
-        } finally {
-            pool.returnResource(jedis);
-        }
+    public JedisCache(JedisPool pool) {
+        this.pool = pool;
     }
 
     public JedisPool getPool() {
         return pool;
     }
 
-
     public void setPool(JedisPool pool) {
         this.pool = pool;
+    }
+
+
+    /**
+     * 删除key
+     * @param keys 要删除的keys
+     * @return 返回删除的个数
+     * @throws RedisException
+     */
+    public long del(String...keys) throws RedisException {
+        Jedis jedis = pool.getResource();
+        try {
+            return jedis.del(keys);
+        } catch (Exception e) {
+            throw new RedisException("redis del key excpetion" , e);
+        } finally {
+            returnResource(jedis);
+        }
+    }
+
+    /**
+     * 为某个key设置过期时间
+     * @param key
+     * @param seconds 过期时间，单位秒
+     * @return 设置成功返回true ，失败返回false
+     * @throws RedisException
+     */
+    public boolean expire(String key , int seconds) throws RedisException {
+        Jedis jedis = pool.getResource();
+        try {
+            long result = jedis.expire(key , seconds);
+            return result == 1;
+        } catch (Exception e) {
+            throw new RedisException("redis del key excpetion" , e);
+        } finally {
+            returnResource(jedis);
+        }
+    }
+
+    /**
+     * 将Jedis实例返还JedisPool
+     * @param jedis
+     */
+    public void returnResource(Jedis jedis) {
+        try {
+            if (jedis != null) {
+                jedis.close();
+            }
+        } catch (Exception e) {
+            logger.error("return jedis to jedispool exception" , e);
+        }
     }
 }
