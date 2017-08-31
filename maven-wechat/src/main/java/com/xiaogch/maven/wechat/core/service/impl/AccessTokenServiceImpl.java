@@ -7,7 +7,7 @@ import com.xiaogch.maven.common.redis.JedisStringCache;
 import com.xiaogch.maven.common.redis.RedisException;
 import com.xiaogch.maven.common.util.HttpRequestUtil;
 import com.xiaogch.maven.wechat.config.RedisKeyConstants;
-import com.xiaogch.maven.wechat.config.WeiXinParamterConfiguration;
+import com.xiaogch.maven.wechat.config.WeiXinConfig;
 import com.xiaogch.maven.wechat.core.entity.AccessTokenEntitiy;
 import com.xiaogch.maven.wechat.core.service.AccessTokenService;
 import org.slf4j.Logger;
@@ -21,7 +21,7 @@ public class AccessTokenServiceImpl implements AccessTokenService {
     private Logger logger = LoggerFactory.getLogger(getClass());
 
     @Autowired
-    private WeiXinParamterConfiguration weixinConfig;
+    private WeiXinConfig weixinConfig;
 
     @Autowired
     private JedisCache jedisCache;

@@ -1,7 +1,10 @@
 package com.xiaogch.maven.wechat.core;
 
 import com.xiaogch.maven.common.util.MessageDigestUtil;
+import com.xiaogch.maven.common.util.XmlDom4jUtil;
 import com.xiaogch.maven.wechat.config.WeiXinConfig;
+import com.xiaogch.maven.wechat.core.entity.ReceivedMsgEntity;
+import com.xiaogch.maven.wechat.core.service.MessageConsumeService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,17 +17,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.util.Arrays;
 
-/**
- * ProjectName: maven <BR>
- * File name: com.xiaogch.maven.wechat.core <BR>
- * Author: guich <BR>
- * Project: maven <BR>
- * Version: v 1.0 <BR>
- * Date: 2017/8/30 11:26 <BR>
- * Description: <BR>
- * Function List: <BR>
- */
-
 @RestController
 public class WechatServiceController {
 
@@ -32,6 +24,9 @@ public class WechatServiceController {
 
     @Autowired
     private WeiXinConfig weiXinConfig;
+
+    @Autowired
+    private MessageConsumeService messageConsumeService;
 
     /**
      * 微信服务认证，用于微信公众号的接入
@@ -47,7 +42,7 @@ public class WechatServiceController {
      * @param echostr 随机字符串
      * @return 验证成功返回echostr ，否则返回空字符串
      */
-    @RequestMapping(value = "/wechat/validate" , method = RequestMethod.GET)
+    @RequestMapping(value = "/wechat/service" , method = RequestMethod.GET)
     public String validate(HttpServletRequest request , HttpServletResponse response ,
                         @RequestParam(value = "signature") String signature,
                         @RequestParam(value = "timestamp") String timestamp,
@@ -72,6 +67,17 @@ public class WechatServiceController {
             }
         } catch (Exception e) {
            logger.error("validate wechat service excption" , e);
+        }
+        return "";
+    }
+
+    @RequestMapping(value = "/wechat/service" , method = RequestMethod.POST)
+    public String service(HttpServletRequest request , HttpServletResponse response) {
+        try {
+            ReceivedMsgEntity receivedMsgEntity = XmlDom4jUtil.praseToBean(request.getInputStream() , ReceivedMsgEntity.class);
+            return messageConsumeService.consume(receivedMsgEntity);
+        } catch (Exception e) {
+            logger.error("parse the message from weixin server exception" , e);
         }
         return "";
     }
