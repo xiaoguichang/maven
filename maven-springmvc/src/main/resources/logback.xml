@@ -56,7 +56,7 @@
     </configuration>
 -->
 <configuration>
-    <property name="root.level" value="info"/>
+    <!--<property name="root.level" value="info"/>-->
 
     <appender name="stdout_console" class="ch.qos.logback.core.ConsoleAppender">
         <encoder>
@@ -64,13 +64,16 @@
         </encoder>
     </appender>
 
-    <appender name="stdout_file" class="ch.qos.logback.core.RollingFileAppender">
+    <appender name="stdout_file" class="ch.qos.logback.core.rolling.RollingFileAppender">
         <file>/home/xiaogch/logs/maven-activiti/root.log</file>
         <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
             <fileNamePattern>/home/xiaogch/logs/maven-activiti/root%d{yyyy-MM-dd}.log.gz</fileNamePattern>
             <!-- 只保留30天历史数据，30天之前的数据删除 -->
             <maxHistory>7</maxHistory>
         </rollingPolicy>
+        <encoder>
+            <pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n</pattern>
+        </encoder>
     </appender>
 
     <root level="DEBUG">
