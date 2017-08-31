@@ -26,13 +26,17 @@ public class MasterDataBaseConfig {
     private String username;
     @Value("${master.db.password}")
     private String password;
-    @Value("${master.db.maxActive}")
+
+    @Value("${master.db.maxActive:100}")
     private int maxActive;
-    @Value("${master.db.initialSize}")
+
+    @Value("${master.db.initialSize:10}")
     private int initialSize;
-    @Value("${master.db.maxWait}")
+
+    @Value("${master.db.maxWait:6000}")
     private int maxWait;
-    @Value("${master.db.minIdle}")
+
+    @Value("${master.db.minIdle:10}")
     private int minIdle;
 
     @Bean(name = "masterDataSource")
