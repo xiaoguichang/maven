@@ -5,8 +5,9 @@ import com.xiaogch.maven.wechat.core.entity.*;
 import com.xiaogch.maven.wechat.core.service.MessageConsumeService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.stereotype.Service;
 
-
+@Service
 public class MessageConsumeBaseServiceImpl implements MessageConsumeService {
 
     Logger logger = LoggerFactory.getLogger(getClass());

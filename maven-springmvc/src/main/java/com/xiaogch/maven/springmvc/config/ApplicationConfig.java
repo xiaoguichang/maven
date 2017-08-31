@@ -1,10 +1,11 @@
 package com.xiaogch.maven.springmvc.config;
 
+import com.xiaogch.maven.wechat.config.WechatConfig;
 import org.springframework.context.annotation.*;
 import org.springframework.context.support.PropertySourcesPlaceholderConfigurer;
 
 @Configuration
-@Import({MasterDataBaseConfig.class})
+@Import({MasterDataBaseConfig.class , WechatConfig.class})
 @PropertySource({"classpath:database.properties"})
 @ComponentScan("com.xiaogch.maven.springmvc")
 public class ApplicationConfig {

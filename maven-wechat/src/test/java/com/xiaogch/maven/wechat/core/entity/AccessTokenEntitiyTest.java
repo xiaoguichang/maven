@@ -1,6 +1,9 @@
 package com.xiaogch.maven.wechat.core.entity;
 
+import com.xiaogch.maven.common.util.XmlDom4jUtil;
 import org.junit.Test;
+
+import java.io.ByteArrayInputStream;
 
 import static org.junit.Assert.*;
 
@@ -25,7 +28,7 @@ public class AccessTokenEntitiyTest {
         accessTokenEntitiy.setCreateTimestamp(ct);
         accessTokenEntitiy.setExpiresIn(7200);
         accessTokenEntitiy.setExpireTimeStamp(ct + 7200*1000);
-        System.out.print(accessTokenEntitiy.toString());
+        System.out.println(accessTokenEntitiy.toString());
     }
 
 }

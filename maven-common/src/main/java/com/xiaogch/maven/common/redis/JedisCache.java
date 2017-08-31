@@ -1,6 +1,5 @@
 package com.xiaogch.maven.common.redis;
 
-import com.sun.org.apache.regexp.internal.RE;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import redis.clients.jedis.Jedis;

@@ -14,11 +14,11 @@ public class RedisConfiguration {
     private String host;
     @Value("${redis.port}")
     private short port;
-    @Value("${redis.maxIdle}")
+    @Value("${redis.maxIdle:500}")
     private int maxIdle;
-    @Value("${redis.minIdle}")
+    @Value("${redis.minIdle:100}")
     private int minIdle;
-    @Value("${redis.maxTotal}")
+    @Value("${redis.maxTotal:5000}")
     private int maxTotal;
 
     @Bean(name = "jedisCache")

@@ -213,7 +213,7 @@ public class ReceivedMsgEntity extends MsgEntitiy implements Serializable {
     }
 
     public TextMsgEntity toTextMsgEntity() {
-        if (MsgConstant.MSGTYPE_TEXT.equalsIgnoreCase(msgType)) {
+        if (MSGTYPE_TEXT.equalsIgnoreCase(msgType)) {
             TextMsgEntity entity = new TextMsgEntity();
             copyToMsgEntity(entity);
 
@@ -227,7 +227,7 @@ public class ReceivedMsgEntity extends MsgEntitiy implements Serializable {
     }
 
     public ImageMsgEntity toImageMsgEntity() {
-        if (MsgConstant.MSGTYPE_IMAGE.equalsIgnoreCase(msgType)) {
+        if (MSGTYPE_IMAGE.equalsIgnoreCase(msgType)) {
             ImageMsgEntity entity = new ImageMsgEntity();
             copyToMsgEntity(entity);
 
@@ -242,7 +242,7 @@ public class ReceivedMsgEntity extends MsgEntitiy implements Serializable {
     }
 
     public VoiceMsgEntity toVoiceMsgEntity() {
-        if (MsgConstant.MSGTYPE_VOICE.equalsIgnoreCase(msgType)) {
+        if (MSGTYPE_VOICE.equalsIgnoreCase(msgType)) {
             VoiceMsgEntity entity = new VoiceMsgEntity();
             copyToMsgEntity(entity);
 
@@ -257,7 +257,7 @@ public class ReceivedMsgEntity extends MsgEntitiy implements Serializable {
     }
 
     public VideoMsgEntity toVideoMsgEntity() {
-        if (MsgConstant.MSGTYPE_VIDEO.equalsIgnoreCase(msgType) || MsgConstant.MSGTYPE_SHORTVIDEO.equalsIgnoreCase(msgType)) {
+        if (MSGTYPE_VIDEO.equalsIgnoreCase(msgType) || MSGTYPE_SHORTVIDEO.equalsIgnoreCase(msgType)) {
             VideoMsgEntity entity = new VideoMsgEntity();
             copyToMsgEntity(entity);
 
@@ -272,7 +272,7 @@ public class ReceivedMsgEntity extends MsgEntitiy implements Serializable {
     }
 
     public LocationMsgEntity toLocationMsgEntity() {
-        if (MsgConstant.MSGTYPE_LOCATION.equalsIgnoreCase(msgType)) {
+        if (MSGTYPE_LOCATION.equalsIgnoreCase(msgType)) {
             LocationMsgEntity entity = new LocationMsgEntity();
             copyToMsgEntity(entity);
 
@@ -288,7 +288,7 @@ public class ReceivedMsgEntity extends MsgEntitiy implements Serializable {
     }
 
     public LinkMsgEntity toLinkMsgEntity() {
-        if (MsgConstant.MSGTYPE_LINK.equalsIgnoreCase(msgType)) {
+        if (MSGTYPE_LINK.equalsIgnoreCase(msgType)) {
             LinkMsgEntity entity = new LinkMsgEntity();
             copyToMsgEntity(entity);
 
@@ -304,7 +304,7 @@ public class ReceivedMsgEntity extends MsgEntitiy implements Serializable {
 
 
     public SubscribeEventMsgEntity toSubscribeEventMsgEntity() {
-        if (MsgConstant.MSGTYPE_EVENT.equalsIgnoreCase(msgType) && MsgConstant.EVENT_SUBSCRIBE.equalsIgnoreCase(event)) {
+        if (MSGTYPE_EVENT.equalsIgnoreCase(msgType) && EVENT_SUBSCRIBE.equalsIgnoreCase(event)) {
             SubscribeEventMsgEntity entity = new SubscribeEventMsgEntity();
             copyToMsgEntity(entity);
             entity.setEvent(event);
@@ -319,7 +319,7 @@ public class ReceivedMsgEntity extends MsgEntitiy implements Serializable {
 
     }
     public UnSubscribeEventMsgEntity toUnSubscribeEventMsgEntity() {
-        if (MsgConstant.MSGTYPE_EVENT.equalsIgnoreCase(msgType) && MsgConstant.EVENT_UNSUBSCRIBE.equalsIgnoreCase(event)) {
+        if (MSGTYPE_EVENT.equalsIgnoreCase(msgType) && EVENT_UNSUBSCRIBE.equalsIgnoreCase(event)) {
             UnSubscribeEventMsgEntity entity = new UnSubscribeEventMsgEntity();
             copyToMsgEntity(entity);
             entity.setEvent(event);
@@ -330,7 +330,7 @@ public class ReceivedMsgEntity extends MsgEntitiy implements Serializable {
 
     }
     public ScanEventMsgEntity toScanEventMsgEntity() {
-        if (MsgConstant.MSGTYPE_EVENT.equalsIgnoreCase(msgType) && MsgConstant.EVENT_SCAN.equalsIgnoreCase(event)) {
+        if (MSGTYPE_EVENT.equalsIgnoreCase(msgType) && EVENT_SCAN.equalsIgnoreCase(event)) {
             ScanEventMsgEntity entity = new ScanEventMsgEntity();
             copyToMsgEntity(entity);
             entity.setEvent(event);
@@ -344,7 +344,7 @@ public class ReceivedMsgEntity extends MsgEntitiy implements Serializable {
     }
 
     public ClickEventMsgEntity toClickEventMsgEntity() {
-        if (MsgConstant.MSGTYPE_EVENT.equalsIgnoreCase(msgType) && MsgConstant.EVENT_CLICK.equalsIgnoreCase(event)) {
+        if (MSGTYPE_EVENT.equalsIgnoreCase(msgType) && EVENT_CLICK.equalsIgnoreCase(event)) {
             ClickEventMsgEntity entity = new ClickEventMsgEntity();
             copyToMsgEntity(entity);
             entity.setEvent(event);
@@ -356,7 +356,7 @@ public class ReceivedMsgEntity extends MsgEntitiy implements Serializable {
     }
 
     public ViewEventMsgEntity toViewEventMsgEntity() {
-        if (MsgConstant.MSGTYPE_EVENT.equalsIgnoreCase(msgType) && MsgConstant.EVENT_VIEW.equalsIgnoreCase(event)) {
+        if (MSGTYPE_EVENT.equalsIgnoreCase(msgType) && EVENT_VIEW.equalsIgnoreCase(event)) {
             ViewEventMsgEntity entity = new ViewEventMsgEntity();
             copyToMsgEntity(entity);
             entity.setEvent(event);
@@ -368,7 +368,7 @@ public class ReceivedMsgEntity extends MsgEntitiy implements Serializable {
     }
 
     public LocationEventMsgEntity toLocationEventMsgEntity() {
-        if (MsgConstant.MSGTYPE_EVENT.equalsIgnoreCase(msgType) && MsgConstant.EVENT_LOCATION.equalsIgnoreCase(event)) {
+        if (MSGTYPE_EVENT.equalsIgnoreCase(msgType) && EVENT_LOCATION.equalsIgnoreCase(event)) {
             LocationEventMsgEntity entity = new LocationEventMsgEntity();
             copyToMsgEntity(entity);
             entity.setEvent(event);
