@@ -30,23 +30,23 @@ public class JedisCacheTest {
 
 
 //    @Test
-    public void testGet() {
-        try {
-            assertNull("hello not set to redis" , jedisCache.get("hello"));
-        } catch (Exception e) {
-           logger.error("testGet exception" , e);
-        }
-    }
-
-    @Test
-    public void testSet() {
-
-        try {
-            jedisCache.set("hello" , "hello");
-        } catch (Exception e) {
-            logger.error("testGet exception" , e);
-        }
-
-    }
+//    public void testGet() {
+//        try {
+//            assertNull("hello not set to redis" , jedisCache.get("hello"));
+//        } catch (Exception e) {
+//           logger.error("testGet exception" , e);
+//        }
+//    }
+//
+//    @Test
+//    public void testSet() {
+//
+//        try {
+//            jedisCache.set("hello" , "hello");
+//        } catch (Exception e) {
+//            logger.error("testGet exception" , e);
+//        }
+//
+//    }
 
 }

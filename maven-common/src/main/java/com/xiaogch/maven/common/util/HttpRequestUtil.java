@@ -158,5 +158,4 @@ public class HttpRequestUtil {
 		return config;
 	}
 
-
 }
