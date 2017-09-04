@@ -1,8 +1,10 @@
 package com.xiaogch.maven.springmvc.config;
 
+import com.xiaogch.maven.wechat.config.WechatWebConfig;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Import;
 import org.springframework.web.multipart.commons.CommonsMultipartResolver;
 import org.springframework.web.multipart.support.StandardServletMultipartResolver;
 import org.springframework.web.servlet.ViewResolver;
@@ -17,7 +19,8 @@ import org.springframework.web.servlet.view.InternalResourceViewResolver;
 
 @Configuration
 @EnableWebMvc
-@ComponentScan("com.xiaogch.maven.springmvc.web")
+@ComponentScan({"com.xiaogch.maven.springmvc.web"})
+@Import({WechatWebConfig.class})
 public class WebConfig extends WebMvcConfigurerAdapter {
 
     @Bean

@@ -39,19 +39,22 @@ public class XmlDom4jUtil {
         }
 
         String tagName = element.getName();
-        String text = element.getText();
+        if (!"xml".equalsIgnoreCase(tagName)) {
+            String text = element.getText();
 
-        String setMethodName = "set" + tagName.substring(0 , 1).toUpperCase() + tagName.substring(1);
-        try {
-            Method method = tClass.getMethod(setMethodName , String.class);
-            method.invoke(t ,text);
-        } catch (NoSuchMethodException e) {
-            logger.error("parseElement NoSuchMethodException" , e);
-        } catch (IllegalAccessException e) {
-            logger.error("parseElement IllegalAccessException" , e);
-        } catch (InvocationTargetException e) {
-            logger.error("parseElement InvocationTargetException" , e);
+            String setMethodName = "set" + tagName.substring(0 , 1).toUpperCase() + tagName.substring(1);
+            try {
+                Method method = tClass.getMethod(setMethodName , String.class);
+                method.invoke(t ,text);
+            } catch (NoSuchMethodException e) {
+                logger.error("parseElement NoSuchMethodException" , e);
+            } catch (IllegalAccessException e) {
+                logger.error("parseElement IllegalAccessException" , e);
+            } catch (InvocationTargetException e) {
+                logger.error("parseElement InvocationTargetException" , e);
+            }
         }
+
     }
 
 }

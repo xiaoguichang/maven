@@ -1,4 +1,4 @@
-package com.xiaogch.maven.wechat.core;
+package com.xiaogch.maven.wechat.web;
 
 import com.xiaogch.maven.common.util.MessageDigestUtil;
 import com.xiaogch.maven.common.util.XmlDom4jUtil;
@@ -15,6 +15,9 @@ import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.io.BufferedReader;
+import java.io.ByteArrayInputStream;
+import java.io.InputStreamReader;
 import java.util.Arrays;
 
 @RestController
@@ -74,11 +77,22 @@ public class WechatServiceController {
     @RequestMapping(value = "/wechat/service" , method = RequestMethod.POST)
     public String service(HttpServletRequest request , HttpServletResponse response) {
         try {
-            ReceivedMsgEntity receivedMsgEntity = XmlDom4jUtil.praseToBean(request.getInputStream() , ReceivedMsgEntity.class);
+            StringBuilder sb = new StringBuilder();
+            BufferedReader br = new BufferedReader(new InputStreamReader(request.getInputStream()));
+            String line;
+            while ((line = br.readLine()) != null) {
+                sb.append(line);
+            }
+            logger.info(" request data is {}" , sb);
+
+            //ReceivedMsgEntity receivedMsgEntity = XmlDom4jUtil.praseToBean(request.getInputStream() , ReceivedMsgEntity.class);
+            ReceivedMsgEntity receivedMsgEntity = XmlDom4jUtil.praseToBean(new ByteArrayInputStream(sb.toString().getBytes()), ReceivedMsgEntity.class);
+
             return messageConsumeService.consume(receivedMsgEntity);
         } catch (Exception e) {
             logger.error("parse the message from weixin server exception" , e);
         }
+
         return "";
     }
 }
