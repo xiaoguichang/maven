@@ -7,6 +7,7 @@ import com.xiaogch.maven.springmvc.entity.SysRoleInfoBean;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -40,7 +41,7 @@ public class SystemRoleInfoController {
                          @RequestParam(value = "pageSize") int pageSize) {
         logger.info("request parameter is pageNo={} , pageSize={}" , pageNo , pageSize);
 
-        PagedList<SysRoleInfoBean> list = sysRoleInfoDao.selectList("select" , new HashMap<>() , pageNo , pageSize);
+        PagedList<SysRoleInfoBean> list = sysRoleInfoDao.selectList("selectAll" , new HashMap<>() , pageNo , pageSize);
         return JSONObject.toJSONString(list);
     }
 

@@ -110,7 +110,7 @@ public class BaseDaoImpl<T> implements BaseDao<T> {
         Assert.isTrue(pageId >=0 , "pageId must greater than or equal zore");
         Assert.isTrue(size > 0 , "size must greater than zore");
         int totalRecordSize = count(statement + "_count" , parameter);
-        int totalPageSize = totalRecordSize > size ? (totalRecordSize/size) + 1 : 0;
+        int totalPageSize = (totalRecordSize%size == 0) ? totalRecordSize/size : (totalRecordSize/size) + 1;
         int currentPageNo = totalPageSize >= pageId ? pageId : totalPageSize;
         int offset = pageId > 0 ? (pageId - 1) * size : 0;
         List<T> data = selectList(statement , parameter , new RowBounds(offset , size));

@@ -10,9 +10,9 @@
     </resultMap>
 
 
-    <insert id="insert" parameterType="com.xiaogch.maven.springmvc.entity.SysRoleInfoBean" useGeneratedKeys="true"
-            keyProperty="role_id">>
-      insert into t_sys_role_info (role_name , role_remark) VALUES (#{roleName} , #{roleRemark})
+    <insert id="insert" parameterType="com.xiaogch.maven.springmvc.entity.SysRoleInfoBean" useGeneratedKeys="true" keyProperty="role_id">
+      insert into t_sys_role_info(role_name , role_remark)
+        values (#{roleName} , #{roleRemark});
     </insert>
 
     <select id="selectAll" resultMap="sysRoleInfoBean">

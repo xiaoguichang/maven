@@ -85,7 +85,6 @@ public class MasterDataBaseConfig {
                 logger.info("resource info is {}" , resource.getURL());
             }
         }
-
         sqlSessionFactoryBean.setMapperLocations(resources);
         return sqlSessionFactoryBean.getObject();
     }
@@ -93,7 +92,7 @@ public class MasterDataBaseConfig {
     @Autowired
     @Qualifier("masterSqlSessionFactory")
     @Bean(name="sqlSessionTemplate")
-    public SqlSessionTemplate getSqlSessionFactory(SqlSessionFactory sqlSessionFactory){
+    public SqlSessionTemplate getSqlSessionTemplate(SqlSessionFactory sqlSessionFactory){
         return new SqlSessionTemplate(sqlSessionFactory);
     }
 }
