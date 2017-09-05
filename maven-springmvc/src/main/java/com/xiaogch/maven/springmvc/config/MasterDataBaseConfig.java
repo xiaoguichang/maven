@@ -1,14 +1,22 @@
 package com.xiaogch.maven.springmvc.config;
 
 import com.alibaba.druid.pool.DruidDataSource;
+import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.mybatis.spring.SqlSessionFactoryBean;
+import org.mybatis.spring.SqlSessionTemplate;
 import org.mybatis.spring.annotation.MapperScan;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.core.io.DefaultResourceLoader;
+import org.springframework.core.io.Resource;
+import org.springframework.core.io.support.PathMatchingResourcePatternResolver;
+import org.springframework.core.io.support.ResourcePatternResolver;
 import org.springframework.jdbc.datasource.DataSourceTransactionManager;
 
 import javax.sql.DataSource;
@@ -17,8 +25,10 @@ import javax.sql.DataSource;
  * Created by Administrator on 2017/7/11 0011.
  */
 @Configuration
-@MapperScan(basePackages = "com.xiaogch.maven.springmvc.dao" , sqlSessionFactoryRef = "masterSqlSessionFactory")
+@MapperScan(basePackages = "com.xiaogch.maven.springmvc.dao.scan" , sqlSessionFactoryRef = "masterSqlSessionFactory")
 public class MasterDataBaseConfig {
+
+    Logger logger = LoggerFactory.getLogger(getClass());
 
     @Value("${master.db.url}")
     private String url;
@@ -67,6 +77,23 @@ public class MasterDataBaseConfig {
     public SqlSessionFactory getSqlSessionFactory(DataSource dataSource) throws Exception {
         SqlSessionFactoryBean sqlSessionFactoryBean = new SqlSessionFactoryBean();
         sqlSessionFactoryBean.setDataSource(dataSource);
+        ResourcePatternResolver resolver = new PathMatchingResourcePatternResolver();
+        Resource[] resources = resolver.getResources("classpath:com/xiaogch/maven/springmvc/dao/mapper/*mapper.xml");
+        logger.info("resources size is {}" , resources == null ? "null" : resources.length);
+        if (resources != null){
+            for (Resource resource : resources) {
+                logger.info("resource info is {}" , resource.getURL());
+            }
+        }
+
+        sqlSessionFactoryBean.setMapperLocations(resources);
         return sqlSessionFactoryBean.getObject();
+    }
+
+    @Autowired
+    @Qualifier("masterSqlSessionFactory")
+    @Bean(name="sqlSessionTemplate")
+    public SqlSessionTemplate getSqlSessionFactory(SqlSessionFactory sqlSessionFactory){
+        return new SqlSessionTemplate(sqlSessionFactory);
     }
 }

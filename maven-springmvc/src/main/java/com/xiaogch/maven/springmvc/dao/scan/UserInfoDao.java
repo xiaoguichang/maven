@@ -1,4 +1,4 @@
-package com.xiaogch.maven.springmvc.dao;
+package com.xiaogch.maven.springmvc.dao.scan;
 
 import com.xiaogch.maven.springmvc.entity.UserInfoBean;
 import org.apache.ibatis.annotations.*;

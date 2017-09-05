@@ -1,6 +1,6 @@
 package com.xiaogch.maven.springmvc.service.impl;
 
-import com.xiaogch.maven.springmvc.dao.UserInfoDao;
+import com.xiaogch.maven.springmvc.dao.scan.UserInfoDao;
 import com.xiaogch.maven.springmvc.entity.UserInfoBean;
 import com.xiaogch.maven.springmvc.service.UserInfoService;
 import org.springframework.beans.factory.annotation.Autowired;
