@@ -48,6 +48,4 @@ public class WebConfig extends WebMvcConfigurerAdapter {
 //    public CommonsMultipartResolver multipartResolver() {
 //        return new CommonsMultipartResolver();
 //    }
-
-
 }
