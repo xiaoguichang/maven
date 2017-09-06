@@ -1,7 +1,11 @@
 package com.xiaogch.maven.springmvc.web.filter;
 
+import com.xiaogch.maven.common.util.SpringContextHolder;
+import com.xiaogch.maven.springmvc.config.AuthConfig;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.util.StringUtils;
 
 import javax.servlet.*;
 import javax.servlet.http.HttpServletRequest;
@@ -22,12 +26,13 @@ public class AuthFilter implements Filter {
         HttpServletRequest request = (HttpServletRequest)servletRequest;
         Object userObject = request.getSession().getAttribute("user");
         String url = request.getRequestURL().toString();
-
-        if (isStaticResource(url)) {
+        AuthConfig authConfig = SpringContextHolder.getBean(AuthConfig.class);
+        if (isStaticResource(url , authConfig.getRegular())) {
             filterChain.doFilter(request , servletResponse);
         }
-
-        if (userObject == null) {
+        String contextPath = request.getContextPath();
+        String path = url.substring(url.indexOf(contextPath) + contextPath.length());
+        if (userObject == null && isNologinPrivilege(path , authConfig.getPrivileges())) {
 
         } else {
 
@@ -40,9 +45,21 @@ public class AuthFilter implements Filter {
     }
 
 
-    private boolean isStaticResource(String url) {
-        String reg = "\\.(jsp|html|htm|bmp|jpg|png|tiff|gif|svg|jpeg|css|less|js|otf|eot|ttf|woff|woff2)$";
-        Pattern pattern = Pattern.compile(reg);
+    private boolean isStaticResource(String url , String regular) {
+        Pattern pattern = Pattern.compile(regular);
         return pattern.matcher(url).matches();
+    }
+
+    private boolean isNologinPrivilege(String url , String privileges) {
+        if (url == null || !StringUtils.hasText(privileges)) {
+            return false;
+        }
+        String[] privilegesArr = privileges.split(",");
+        for (String privilege : privilegesArr) {
+            if (url.equals(privilege)) {
+                return true;
+            }
+        }
+        return false;
     }
 }
