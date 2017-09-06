@@ -7,7 +7,7 @@ import org.springframework.context.support.PropertySourcesPlaceholderConfigurer;
 
 @Configuration
 @Import({WechatConfig.class , MasterDataBaseConfig.class})
-@PropertySource({"classpath:*.properties"})
+@PropertySource({"classpath:system.properties"})
 @ComponentScan({"com.xiaogch.maven.springmvc.*"})
 public class ApplicationConfig {
 

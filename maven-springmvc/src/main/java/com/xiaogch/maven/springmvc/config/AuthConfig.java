@@ -20,6 +20,9 @@ public class AuthConfig implements Serializable {
     @Value("${auth.static.resources.reg}")
     private String regular;
 
+    @Value("${auth.loginpage.path}")
+    private String loginPagePath;
+
     public String getUserInfo() {
         return userInfo;
     }
@@ -28,7 +31,7 @@ public class AuthConfig implements Serializable {
         this.userInfo = userInfo;
     }
 
-    public String getPrivileges() {
+    public String getNologinPrivileges() {
         return nologinPrivileges == null ? "" : nologinPrivileges;
     }
 
@@ -43,5 +46,22 @@ public class AuthConfig implements Serializable {
 
     public void setRegular(String regular) {
         this.regular = regular;
+    }
+
+    public String getCommonPrivileges() {
+        return commonPrivileges == null ? "" : commonPrivileges;
+    }
+
+    public void setCommonPrivileges(String commonPrivileges) {
+        this.commonPrivileges = commonPrivileges;
+    }
+
+    public String getLoginPagePath() {
+        Assert.notNull(loginPagePath , "auth.loginpage.path can't be null !");
+        return loginPagePath;
+    }
+
+    public void setLoginPagePath(String loginPagePath) {
+        this.loginPagePath = loginPagePath;
     }
 }

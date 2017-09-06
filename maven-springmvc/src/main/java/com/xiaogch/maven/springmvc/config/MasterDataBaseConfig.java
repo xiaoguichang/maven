@@ -30,23 +30,23 @@ public class MasterDataBaseConfig {
 
     Logger logger = LoggerFactory.getLogger(getClass());
 
-    @Value("${master.db.url}")
+    @Value("${db.master.url}")
     private String url;
-    @Value("${master.db.username}")
+    @Value("${db.master.username}")
     private String username;
-    @Value("${master.db.password}")
+    @Value("${db.master.password}")
     private String password;
 
-    @Value("${master.db.maxActive:100}")
+    @Value("${db.master.maxActive:100}")
     private int maxActive;
 
-    @Value("${master.db.initialSize:10}")
+    @Value("${db.master.initialSize:10}")
     private int initialSize;
 
-    @Value("${master.db.maxWait:6000}")
+    @Value("${db.master.maxWait:6000}")
     private int maxWait;
 
-    @Value("${master.db.minIdle:10}")
+    @Value("${db.master.minIdle:10}")
     private int minIdle;
 
     @Bean(name = "masterDataSource")

@@ -2,6 +2,8 @@ package com.xiaogch.maven.springmvc.web.filter;
 
 import com.xiaogch.maven.common.util.SpringContextHolder;
 import com.xiaogch.maven.springmvc.config.AuthConfig;
+import com.xiaogch.maven.springmvc.entity.SysUserInfoBean;
+import com.xiaogch.maven.springmvc.service.AuthService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,6 +11,7 @@ import org.springframework.util.StringUtils;
 
 import javax.servlet.*;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.regex.Pattern;
 
@@ -24,19 +27,41 @@ public class AuthFilter implements Filter {
     @Override
     public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws IOException, ServletException {
         HttpServletRequest request = (HttpServletRequest)servletRequest;
-        Object userObject = request.getSession().getAttribute("user");
-        String url = request.getRequestURL().toString();
         AuthConfig authConfig = SpringContextHolder.getBean(AuthConfig.class);
-        if (isStaticResource(url , authConfig.getRegular())) {
-            filterChain.doFilter(request , servletResponse);
-        }
+        Object userObject = request.getSession().getAttribute(authConfig.getUserInfo());
+        String url = request.getRequestURL().toString();
         String contextPath = request.getContextPath();
         String path = url.substring(url.indexOf(contextPath) + contextPath.length());
-        if (userObject == null && isNologinPrivilege(path , authConfig.getPrivileges())) {
 
-        } else {
-
+        logger.info("url={} , contextPath={} , path={}" , url , contextPath , path);
+        if (isStaticResource(url , authConfig.getRegular())) {
+            filterChain.doFilter(servletRequest , servletResponse);
+            return;
         }
+
+        if (userObject == null) {
+            if (hasPrivilege(path , authConfig.getNologinPrivileges())) {
+                filterChain.doFilter(servletRequest , servletResponse);
+            } else {
+                HttpServletResponse response = (HttpServletResponse) servletResponse;
+                response.sendRedirect(authConfig.getLoginPagePath());
+            }
+            return;
+        }
+
+        if (hasPrivilege(path , authConfig.getCommonPrivileges())) {
+            filterChain.doFilter(servletRequest , servletResponse);
+            return;
+        }
+
+        AuthService authService = SpringContextHolder.getBean("authService");
+        SysUserInfoBean userInfoBean = (SysUserInfoBean) userObject;
+        if (authService != null && authService.canVisit(userInfoBean.getUserName() , path)) {
+            filterChain.doFilter(servletRequest , servletResponse);
+            return;
+        }
+        HttpServletResponse response = (HttpServletResponse) servletResponse;
+        response.sendRedirect(authConfig.getLoginPagePath());
     }
 
     @Override
@@ -50,7 +75,7 @@ public class AuthFilter implements Filter {
         return pattern.matcher(url).matches();
     }
 
-    private boolean isNologinPrivilege(String url , String privileges) {
+    private boolean hasPrivilege(String url , String privileges) {
         if (url == null || !StringUtils.hasText(privileges)) {
             return false;
         }

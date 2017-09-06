@@ -4,6 +4,7 @@ package com.xiaogch.maven.springmvc;
 import ch.qos.logback.ext.spring.web.LogbackConfigListener;
 import com.xiaogch.maven.springmvc.config.ApplicationConfig;
 import com.xiaogch.maven.springmvc.config.WebConfig;
+import com.xiaogch.maven.springmvc.web.filter.AuthFilter;
 import com.xiaogch.maven.springmvc.web.servlet.MyServlet;
 import org.springframework.web.filter.CharacterEncodingFilter;
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
@@ -41,6 +42,10 @@ public class WebmvcInitializer extends AbstractAnnotationConfigDispatcherServlet
     private void registerFilter(ServletContext servletContext) {
         FilterRegistration.Dynamic filterDynamic = servletContext.addFilter("encodeFilter" , CharacterEncodingFilter.class);
         filterDynamic.addMappingForUrlPatterns(null , false , "/*");
+
+        filterDynamic = servletContext.addFilter("authFilter" , AuthFilter.class);
+        filterDynamic.addMappingForUrlPatterns(null , false , "/*");
+
     }
 
     private void registerServlet(ServletContext servletContext) {

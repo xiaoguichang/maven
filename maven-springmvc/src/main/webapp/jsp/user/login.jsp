@@ -29,8 +29,8 @@
             .my-form-label span {
                 height: 37px;
                 text-align: center;
-                padding-top:1px;
-                padding-bottom: 1px;
+                padding-top: 8px;
+                padding-bottom: 8px;
                 font-size: 1.6rem;
                 line-height: 1.2;
             }
@@ -39,7 +39,9 @@
                 background-color: #96a2b4!important;
                 display: block!important;
                 width: 90%!important;
-                height: 30px!important;
+                height: 37px!important;
+                padding-top: 0px!important;
+                padding-bottom: 0px!important;
             }
 
             .my-footer-default {
