@@ -7,7 +7,6 @@ import com.xiaogch.maven.springmvc.entity.SysRoleInfoBean;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Lazy;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -29,7 +28,7 @@ public class SystemRoleInfoController {
         logger.info("request parameter is {} " , sysRoleInfoBean);
         if (sysRoleInfoBean != null){
             int insertReuslt = sysRoleInfoDao.insert(sysRoleInfoBean);
-            return "insertReuslt is " + insertReuslt;
+            return "insertReuslt is " + insertReuslt + " roleId=" + sysRoleInfoBean.getRoleId();
         } else {
             return "request parameter is null";
         }

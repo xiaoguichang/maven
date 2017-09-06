@@ -8,16 +8,6 @@ import org.apache.ibatis.session.RowBounds;
 import java.util.List;
 import java.util.Map;
 
-/**
- * ProjectName: maven <BR>
- * File name: com.xiaogch.maven.springmvc.dao <BR>
- * Author: guich <BR>
- * Project: maven <BR>
- * Version: v 1.0 <BR>
- * Date: 2017/9/5 15:25 <BR>
- * Description: <BR>
- * Function List: <BR>
- */
 public interface BaseDao<T> {
 
     T selectById(Object parameter);

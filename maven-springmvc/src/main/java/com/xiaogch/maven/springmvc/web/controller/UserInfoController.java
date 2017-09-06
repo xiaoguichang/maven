@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
 import java.util.Date;
 
 /**
@@ -61,5 +62,23 @@ public class UserInfoController {
     @InitBinder
     public void initBinder(WebDataBinder webDataBinder) {
         webDataBinder.registerCustomEditor(Date.class , new StringToDateUtil());
+    }
+
+    @RequestMapping("login")
+    public void login(HttpServletRequest request , HttpServletResponse response ,
+                              @RequestParam(value = "userName") String userName,
+                        @RequestParam(value = "password") String password) throws IOException {
+        logger.info("userName={} , password={}" , userName , password);
+        request.getSession().setAttribute("user" , userName);
+        response.sendRedirect(request.getContextPath() + "/user/index");
+    }
+
+    @RequestMapping("index")
+    public String index(HttpServletRequest request , HttpServletResponse response) throws IOException {
+        if (request.getSession().getAttribute("user") == null) {
+            return "user/login";
+        } else {
+            return "user/index";
+        }
     }
 }
