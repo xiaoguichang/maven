@@ -1,22 +1,25 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html lang="en">
-    <jsp:include page="${ctx}/jsp/common/common.jsp"/>
+    <jsp:include page="/jsp/common/common.jsp"/>
     <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <title>自助服务管理平台</title>
-        <meta name="description" content="这是一个 index 页面">
+        <meta name="description" content="自助服务管理平台">
+        <%--<meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="keywords" content="index">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="renderer" content="webkit">
-        <meta http-equiv="Cache-Control" content="no-siteapp"/>
+        <meta http-equiv="Cache-Control" content="no-siteapp" />
         <link rel="icon" type="image/png" href="${ctx}/jsp/common/assets/i/app-icon72x72@2x.png">
         <link rel="apple-touch-icon-precomposed" href="${ctx}/jsp/common/assets/i/app-icon72x72@2x.png">
-        <meta name="apple-mobile-web-app-title" content="Amaze UI"/>
-        <link rel="stylesheet" href="${ctx}/jsp/common/assets/css/amazeui.min.css"/>
-        <link rel="stylesheet" href="${ctx}/jsp/common/assets/css/amazeui.datatables.min.css"/>
+        <meta name="apple-mobile-web-app-title" content="Amaze UI" />
+        <script src="${ctx}/jsp/common/assets/js/echarts.min.js"></script>
+        <link rel="stylesheet" href="${ctx}/jsp/common/assets/css/amazeui.min.css" />
+        <link rel="stylesheet" href="${ctx}/jsp/common/assets/css/amazeui.datatables.min.css" />
         <link rel="stylesheet" href="${ctx}/jsp/common/assets/css/app.css">
-        <script src="${ctx}/jsp/common/assets/js/jquery.min.js"></script>
+        <script src="${ctx}/jsp/common/assets/js/jquery.min.js"></script>--%>
+        <jsp:include page="/jsp/common/headSetting.jsp"/>
+
         <style>
             .my-form-label {
                 display: block;
@@ -111,18 +114,6 @@
                     <p>京ICP备13033158</p>
                 </div>
             </footer>
-            <%--<div id="am-footer-modal" class="am-modal am-modal-no-btn am-switch-mode-m am-switch-mode-m-default">--%>
-                <%--<div class="am-modal-dialog">--%>
-                    <%--<div class="am-modal-hd am-modal-footer-hd">--%>
-                        <%--<a href="javascript:void(0)" data-dismiss="modal" class="am-close am-close-spin"--%>
-                           <%--data-am-modal-close>&times;</a>--%>
-                    <%--</div>--%>
-                    <%--<div class="am-modal-bd">您正在浏览的是--%>
-                        <%--<span class="am-switch-mode-owner">云适配</span>--%>
-                        <%--<span class="am-switch-mode-slogan">为您当前手机订制的移动网站。</span>--%>
-                    <%--</div>--%>
-                <%--</div>--%>
-            <%--</div>--%>
         </div>
         <script src="${ctx}/jsp/common/assets/js/amazeui.min.js"></script>
         <script src="${ctx}/jsp/common/assets/js/app.js"></script>
