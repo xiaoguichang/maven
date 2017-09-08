@@ -14,6 +14,8 @@ public class ByteUtilTest {
 
     @Test
     public void long2Byte() throws Exception {
+        logger.info(MessageDigestUtil.md5("123456"));
+
        byte[] result = ByteUtil.long2Byte(19999999990l);
        assertEquals(19999999990l , ByteUtil.bytes2Long(result));
 

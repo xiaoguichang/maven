@@ -2,11 +2,10 @@ package com.xiaogch.maven.springmvc.web.filter;
 
 import com.xiaogch.maven.common.util.SpringContextHolder;
 import com.xiaogch.maven.springmvc.config.AuthConfig;
-import com.xiaogch.maven.springmvc.entity.SysUserInfoBean;
+import com.xiaogch.maven.springmvc.entity.SystemUserInfoBean;
 import com.xiaogch.maven.springmvc.service.AuthService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.StringUtils;
 
 import javax.servlet.*;
@@ -39,13 +38,14 @@ public class AuthFilter implements Filter {
             return;
         }
 
+        if (hasPrivilege(path , authConfig.getNologinPrivileges())) {
+            filterChain.doFilter(servletRequest , servletResponse);
+            return;
+        }
+
         if (userObject == null) {
-            if (hasPrivilege(path , authConfig.getNologinPrivileges())) {
-                filterChain.doFilter(servletRequest , servletResponse);
-            } else {
-                HttpServletResponse response = (HttpServletResponse) servletResponse;
-                response.sendRedirect(authConfig.getLoginPagePath());
-            }
+            HttpServletResponse response = (HttpServletResponse) servletResponse;
+            response.sendRedirect(authConfig.getLoginPagePath());
             return;
         }
 
@@ -55,7 +55,7 @@ public class AuthFilter implements Filter {
         }
 
         AuthService authService = SpringContextHolder.getBean("authService");
-        SysUserInfoBean userInfoBean = (SysUserInfoBean) userObject;
+        SystemUserInfoBean userInfoBean = (SystemUserInfoBean) userObject;
         if (authService != null && authService.canVisit(userInfoBean.getUserName() , path)) {
             filterChain.doFilter(servletRequest , servletResponse);
             return;
