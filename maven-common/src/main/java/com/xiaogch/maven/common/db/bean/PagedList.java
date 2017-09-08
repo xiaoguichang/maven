@@ -1,19 +1,17 @@
-package com.xiaogch.maven.springmvc.entity;
-
-import com.xiaogch.maven.springmvc.entity.PagedInfo;
+package com.xiaogch.maven.common.db.bean;
 
 import java.util.List;
 
-public class  PagedList<T> {
+public class PagedList<T> {
 
     private List<T> data;
-    private PagedInfo pagedInfo;
+    private PagedInfoBean pagedInfo;
 
     public PagedList() {
 
     }
 
-    public PagedList(PagedInfo pagedInfo , List<T> data) {
+    public PagedList(PagedInfoBean pagedInfo , List<T> data) {
         this.pagedInfo = pagedInfo;
         this.data = data;
     }
@@ -26,11 +24,11 @@ public class  PagedList<T> {
         this.data = data;
     }
 
-    public PagedInfo getPagedInfo() {
+    public PagedInfoBean getPagedInfoBean() {
         return pagedInfo;
     }
 
-    public void setPagedInfo(PagedInfo pagedInfo) {
+    public void setPagedInfo(PagedInfoBean pagedInfo) {
         this.pagedInfo = pagedInfo;
     }
 }

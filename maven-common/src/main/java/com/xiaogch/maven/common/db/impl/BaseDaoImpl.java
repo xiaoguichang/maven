@@ -1,8 +1,8 @@
-package com.xiaogch.maven.springmvc.dao.impl;
+package com.xiaogch.maven.common.db.impl;
 
-import com.xiaogch.maven.springmvc.dao.BaseDao;
-import com.xiaogch.maven.springmvc.entity.PagedInfo;
-import com.xiaogch.maven.springmvc.entity.PagedList;
+import com.xiaogch.maven.common.db.BaseDao;
+import com.xiaogch.maven.common.db.bean.PagedInfoBean;
+import com.xiaogch.maven.common.db.bean.PagedList;
 import org.apache.ibatis.cursor.Cursor;
 import org.apache.ibatis.session.ResultHandler;
 import org.apache.ibatis.session.RowBounds;
@@ -106,18 +106,18 @@ public class BaseDaoImpl<T> implements BaseDao<T> {
     }
 
     @Override
-    public PagedList<T> selectList(String statement, Object parameter, int pageId, int size) {
+    public <E> PagedList<E> selectList(String statement, Object parameter, int pageId, int size) {
         Assert.isTrue(pageId >=0 , "pageId must greater than or equal zore");
         Assert.isTrue(size > 0 , "size must greater than zore");
         int totalRecordSize = count(statement + "_count" , parameter);
         int totalPageSize = (totalRecordSize%size == 0) ? totalRecordSize/size : (totalRecordSize/size) + 1;
         int currentPageNo = totalPageSize >= pageId ? pageId : totalPageSize;
         int offset = pageId > 0 ? (pageId - 1) * size : 0;
-        List<T> data = selectList(statement , parameter , new RowBounds(offset , size));
+        List<E> data = selectList(statement , parameter , new RowBounds(offset , size));
         if (data == null) {
             data = Collections.emptyList();
         }
-        PagedInfo pagedInfo = new PagedInfo(totalRecordSize , data.size() , currentPageNo , totalPageSize , size);
+        PagedInfoBean pagedInfo = new PagedInfoBean(totalRecordSize , data.size() , currentPageNo , totalPageSize , size);
         return new PagedList<>(pagedInfo , data);
     }
 

@@ -1,13 +1,15 @@
-package com.xiaogch.maven.springmvc.entity;
+package com.xiaogch.maven.common.db.bean;
 
-public class PagedInfo {
+import java.io.Serializable;
+
+public class PagedInfoBean implements Serializable {
     private int currentPageNo; //当前页面
     private int pageSize; //每页数量
     private int totalPageSize; //总页数
     private int totalRecordSize; //总数
     private int recordSize; //当前数量
 
-    public PagedInfo(int totalRecordSize , int recordSize , int currentPageNo , int totalPageSize , int pageSize) {
+    public PagedInfoBean(int totalRecordSize , int recordSize , int currentPageNo , int totalPageSize , int pageSize) {
         this.totalRecordSize = totalRecordSize;
         this.recordSize = recordSize;
         this.totalPageSize = totalPageSize;

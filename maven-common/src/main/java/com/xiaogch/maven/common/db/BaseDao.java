@@ -1,6 +1,6 @@
-package com.xiaogch.maven.springmvc.dao;
+package com.xiaogch.maven.common.db;
 
-import com.xiaogch.maven.springmvc.entity.PagedList;
+import com.xiaogch.maven.common.db.bean.PagedList;
 import org.apache.ibatis.cursor.Cursor;
 import org.apache.ibatis.session.ResultHandler;
 import org.apache.ibatis.session.RowBounds;
@@ -34,7 +34,7 @@ public interface BaseDao<T> {
 
     <E> List<E> selectList(String statement, Object parameter, RowBounds rowBounds);
 
-    PagedList<T> selectList(String statement , Object parameter , int pageId , int size);
+    <E> PagedList<E> selectList(String statement , Object parameter , int pageId , int size);
 
     void select(String statement, ResultHandler handler);
 
