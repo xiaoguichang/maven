@@ -1,9 +1,10 @@
 package com.xiaogch.maven.springmvc.web.controller;
 
 import com.alibaba.fastjson.JSONObject;
-import com.xiaogch.maven.springmvc.dao.SysRoleInfoDao;
-import com.xiaogch.maven.springmvc.entity.PagedList;
-import com.xiaogch.maven.springmvc.entity.SysRoleInfoBean;
+import com.xiaogch.maven.springmvc.dao.SystemRoleInfoDao;
+import com.xiaogch.maven.common.db.bean.PagedList;
+import com.xiaogch.maven.springmvc.entity.SystemRoleInfoBean;
+import com.xiaogch.maven.springmvc.service.SystemRoleInfoService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,31 +17,31 @@ import javax.servlet.http.HttpServletResponse;
 import java.util.HashMap;
 
 @RestController
+@RequestMapping("role")
 public class SystemRoleInfoController {
 
     Logger logger = LoggerFactory.getLogger(getClass());
 
     @Autowired
-    SysRoleInfoDao sysRoleInfoDao;
+    SystemRoleInfoService systemRoleInfoService;
 
-    @RequestMapping("roleInfo/insert")
-    public String insert(HttpServletResponse response , HttpServletRequest request , SysRoleInfoBean sysRoleInfoBean) {
+    @RequestMapping("insert")
+    public String insert(HttpServletResponse response , HttpServletRequest request , SystemRoleInfoBean sysRoleInfoBean) {
         logger.info("request parameter is {} " , sysRoleInfoBean);
         if (sysRoleInfoBean != null){
-            int insertReuslt = sysRoleInfoDao.insert(sysRoleInfoBean);
+            int insertReuslt = systemRoleInfoService.insert(sysRoleInfoBean);
             return "insertReuslt is " + insertReuslt + " roleId=" + sysRoleInfoBean.getRoleId();
         } else {
             return "request parameter is null";
         }
     }
 
-    @RequestMapping("roleInfo/getList")
+    @RequestMapping("getList")
     public String getList(HttpServletResponse response , HttpServletRequest request ,
                          @RequestParam(value = "pageNo") int pageNo,
                          @RequestParam(value = "pageSize") int pageSize) {
         logger.info("request parameter is pageNo={} , pageSize={}" , pageNo , pageSize);
-
-        PagedList<SysRoleInfoBean> list = sysRoleInfoDao.selectList("selectAll" , new HashMap<>() , pageNo , pageSize);
+        PagedList<SystemRoleInfoBean> list = systemRoleInfoService.selectList(new HashMap<>() , pageNo , pageSize);
         return JSONObject.toJSONString(list);
     }
 

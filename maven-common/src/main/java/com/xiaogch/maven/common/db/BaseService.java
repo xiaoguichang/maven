@@ -7,16 +7,6 @@ import org.apache.ibatis.session.RowBounds;
 import java.util.List;
 import java.util.Map;
 
-/**
- * ProjectName: maven <BR>
- * File name: com.xiaogch.maven.springmvc.service <BR>
- * Author: guich <BR>
- * Project: maven <BR>
- * Version: v 1.0 <BR>
- * Date: 2017/9/8 15:11 <BR>
- * Description: <BR>
- * Function List: <BR>
- */
 public interface BaseService<T> {
 
     T selectById(Object parameter);

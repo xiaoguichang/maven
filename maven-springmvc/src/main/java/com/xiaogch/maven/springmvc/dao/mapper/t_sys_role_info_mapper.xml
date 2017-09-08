@@ -3,23 +3,23 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.xiaogch.maven.springmvc.entity.SysRoleInfoBean">
 
-    <resultMap id="sysRoleInfoBean" type="com.xiaogch.maven.springmvc.entity.SysRoleInfoBean">
+    <resultMap id="sysRoleInfoBean" type="com.xiaogch.maven.springmvc.entity.SystemRoleInfoBean">
         <result property="roleId" column="role_id"/>
         <result property="roleName" column="role_name"/>
         <result property="roleRemark" column="role_remark"/>
     </resultMap>
 
 
-    <insert id="insert" parameterType="com.xiaogch.maven.springmvc.entity.SysRoleInfoBean" useGeneratedKeys="true" keyProperty="roleId">
+    <insert id="insert" parameterType="com.xiaogch.maven.springmvc.entity.SystemRoleInfoBean" useGeneratedKeys="true" keyProperty="roleId">
       insert into t_sys_role_info(role_name , role_remark)
         values (#{roleName} , #{roleRemark});
     </insert>
 
-    <select id="selectAll" resultMap="sysRoleInfoBean">
+    <select id="selectList" resultMap="sysRoleInfoBean">
         select * from t_sys_role_info;
     </select>
 
-    <select id="selectAll_count" resultType="int">
+    <select id="selectList_count" resultType="int">
         select COUNT(1) from t_sys_role_info;
     </select>
 </mapper>

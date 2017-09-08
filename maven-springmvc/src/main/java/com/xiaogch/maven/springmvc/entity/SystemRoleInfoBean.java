@@ -1,6 +1,6 @@
 package com.xiaogch.maven.springmvc.entity;
 
-public class SysRoleInfoBean {
+public class SystemRoleInfoBean {
 
     private Integer roleId;
     private String roleName;

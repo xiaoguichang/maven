@@ -35,10 +35,6 @@ public class BaseDaoImpl<T> implements BaseDao<T> {
         this.namespace = namespace;
     }
 
-    @Override
-    public T selectById(Object parameter) {
-        return sqlSessionTemplate.selectOne(namespace + ".selectById" , parameter);
-    }
 
     @Override
     public <T1> T1 selectOne(String statement) {
