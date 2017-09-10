@@ -52,6 +52,12 @@
             padding-right: 25px!important;
         }
 
+        iframe {
+            display: block;
+            width: 100%;
+
+            min-height: 500px;
+        }
     </style>
 
     <body data-type="index" >
@@ -60,25 +66,28 @@
         <div class="am-g tpl-g">
 
             <!-- 侧边导航栏 -->
-            <div class="left-sidebar">
+            <div class="left-sidebar" style="top: 80px;padding-top: 0px; ">
                 <ul class="sidebar-nav topNav"></ul>
             </div>
 
             <div class="tpl-content-wrapper">
                 <div class="am-tabs" data-am-tabs="{noSwipe: 1}" id="content-tabs">
                     <ul class="am-tabs-nav am-nav am-nav-tabs">
-                        <li class="am-active"><a href="javascript: void(0)">首页</a></li>
+                        <li class="am-active my-tab"><a href="javascript: void(0)">首页</a></li>
                     </ul>
-
-                    <div class="am-tabs-bd">
+                    <div class="am-tabs-bd" style="border: 0px solid;">
                         <div class="am-tab-panel am-active">
                             <jsp:include page="/jsp/common/content.jsp"/>
                         </div>
-                        <div class="am-tab-panel">
-                        </div>
-                        <div class="am-tab-panel">
-                        </div>
                     </div>
+                </div>
+            </div>
+        </div>
+        <div class="am-modal am-modal-loading am-modal-no-btn loading-flow " tabindex="-1" id="my-modal-loading">
+            <div class="am-modal-dialog">
+                <div class="am-modal-hd">正在载入...</div>
+                <div class="am-modal-bd">
+                    <span class="am-icon-spinner am-icon-spin"></span>
                 </div>
             </div>
         </div>
@@ -92,145 +101,7 @@
                 {
                     menuId:"01",
                     menuName:'系统权限配置01',
-                    menuEntity:"http://ehr.sunlands.com/ehr-web/?#login",
-                    childMenus:[]
-                },
-                {
-                menuId:"01",
-                menuName:'系统权限配置01',
-                menuEntity:"http://ehr.sunlands.com/ehr-web/?#login",
-                childMenus:[]
-                },
-                {
-                    menuId:"01",
-                    menuName:'系统权限配置01',
-                    menuEntity:"http://ehr.sunlands.com/ehr-web/?#login",
-                    childMenus:[]
-                },
-                {
-                    menuId:"01",
-                    menuName:'系统权限配置01',
-                    menuEntity:"http://ehr.sunlands.com/ehr-web/?#login",
-                    childMenus:[]
-                },
-                {
-                    menuId:"01",
-                    menuName:'系统权限配置01',
-                    menuEntity:"http://ehr.sunlands.com/ehr-web/?#login",
-                    childMenus:[]
-                },
-                {
-                    menuId:"01",
-                    menuName:'系统权限配置01',
-                    menuEntity:"http://ehr.sunlands.com/ehr-web/?#login",
-                    childMenus:[]
-                },
-                {
-                    menuId:"01",
-                    menuName:'系统权限配置01',
-                    menuEntity:"http://ehr.sunlands.com/ehr-web/?#login",
-                    childMenus:[]
-                },
-                {
-                    menuId:"01",
-                    menuName:'系统权限配置01',
-                    menuEntity:"http://ehr.sunlands.com/ehr-web/?#login",
-                    childMenus:[]
-                },
-                {
-                    menuId:"01",
-                    menuName:'系统权限配置01',
-                    menuEntity:"http://ehr.sunlands.com/ehr-web/?#login",
-                    childMenus:[]
-                },
-                {
-                    menuId:"01",
-                    menuName:'系统权限配置01',
-                    menuEntity:"http://ehr.sunlands.com/ehr-web/?#login",
-                    childMenus:[]
-                },
-                {
-                    menuId:"01",
-                    menuName:'系统权限配置01',
-                    menuEntity:"http://ehr.sunlands.com/ehr-web/?#login",
-                    childMenus:[]
-                },
-                {
-                    menuId:"01",
-                    menuName:'系统权限配置01',
-                    menuEntity:"http://ehr.sunlands.com/ehr-web/?#login",
-                    childMenus:[]
-                },
-                {
-                    menuId:"01",
-                    menuName:'系统权限配置01',
-                    menuEntity:"http://ehr.sunlands.com/ehr-web/?#login",
-                    childMenus:[]
-                },
-                {
-                    menuId:"01",
-                    menuName:'系统权限配置01',
-                    menuEntity:"http://ehr.sunlands.com/ehr-web/?#login",
-                    childMenus:[]
-                },
-                {
-                    menuId:"01",
-                    menuName:'系统权限配置01',
-                    menuEntity:"http://ehr.sunlands.com/ehr-web/?#login",
-                    childMenus:[]
-                },
-                {
-                    menuId:"01",
-                    menuName:'系统权限配置01',
-                    menuEntity:"http://ehr.sunlands.com/ehr-web/?#login",
-                    childMenus:[]
-                },
-                {
-                    menuId:"01",
-                    menuName:'系统权限配置01',
-                    menuEntity:"http://ehr.sunlands.com/ehr-web/?#login",
-                    childMenus:[]
-                },
-                {
-                    menuId:"01",
-                    menuName:'系统权限配置01',
-                    menuEntity:"http://ehr.sunlands.com/ehr-web/?#login",
-                    childMenus:[]
-                },
-                {
-                    menuId:"01",
-                    menuName:'系统权限配置01',
-                    menuEntity:"http://ehr.sunlands.com/ehr-web/?#login",
-                    childMenus:[]
-                },
-                {
-                    menuId:"01",
-                    menuName:'系统权限配置01',
-                    menuEntity:"http://ehr.sunlands.com/ehr-web/?#login",
-                    childMenus:[]
-                },
-                {
-                    menuId:"01",
-                    menuName:'系统权限配置01',
-                    menuEntity:"http://ehr.sunlands.com/ehr-web/?#login",
-                    childMenus:[]
-                },
-                {
-                    menuId:"01",
-                    menuName:'系统权限配置01',
-                    menuEntity:"http://ehr.sunlands.com/ehr-web/?#login",
-                    childMenus:[]
-                },
-                {
-                    menuId:"01",
-                    menuName:'系统权限配置01',
-                    menuEntity:"http://ehr.sunlands.com/ehr-web/?#login",
-                    childMenus:[]
-                },
-                {
-                    menuId:"01",
-                    menuName:'系统权限配置01',
-                    menuEntity:"http://ehr.sunlands.com/ehr-web/?#login",
+                    menuEntity:"http://localhost:8080/springmvc/jsp/user/user.jsp",
                     childMenus:[]
                 },
                 {
@@ -245,68 +116,20 @@
                             childMenus:[{
                                 menuId:"0001",
                                 menuName:'系统权限配置0001',
-                                menuEntity:"http://ehr.sunlands.com/ehr-web/?#login",
+                                menuEntity:"http://localhost:8080/springmvc/jsp/user/user.jsp",
                                 childMenus:[]
                             }]
                         },
                         {
                             menuId:"002",
                             menuName:'系统权限配置002',
-                            menuEntity:"http://ehr.sunlands.com/ehr-web/?#login",
-                            childMenus:[]
-                        }
-                    ]
-                },
-                {
-                    menuId:"02",
-                    menuName:'系统权限配置02',
-                    menuEntity:"",
-                    childMenus:[
-                        {
-                            menuId:"0001",
-                            menuName:'系统权限配置001',
-                            menuEntity:"",
-                            childMenus:[{
-                                menuId:"0001",
-                                menuName:'系统权限配置0001',
-                                menuEntity:"http://ehr.sunlands.com/ehr-web/?#login",
-                                childMenus:[]
-                            }]
-                        },
-                        {
-                            menuId:"002",
-                            menuName:'系统权限配置002',
-                            menuEntity:"http://ehr.sunlands.com/ehr-web/?#login",
-                            childMenus:[]
-                        }
-                    ]
-                },
-                {
-                    menuId:"02",
-                    menuName:'系统权限配置02',
-                    menuEntity:"",
-                    childMenus:[
-                        {
-                            menuId:"0001",
-                            menuName:'系统权限配置001',
-                            menuEntity:"",
-                            childMenus:[{
-                                menuId:"0001",
-                                menuName:'系统权限配置0001',
-                                menuEntity:"http://ehr.sunlands.com/ehr-web/?#login",
-                                childMenus:[]
-                            }]
-                        },
-                        {
-                            menuId:"002",
-                            menuName:'系统权限配置002',
-                            menuEntity:"http://ehr.sunlands.com/ehr-web/?#login",
+                            menuEntity:"http://localhost:8080/springm/jsp/user/user.jsp",
                             childMenus:[]
                         }
                     ]
                 }];
         </script>
-        <script src="${ctx}/jsp/common/assets/js/app.js?time=13"></script>
+        <script src="${ctx}/jsp/common/assets/js/menu.js?time=18"></script>
     </body>
 
 </html>

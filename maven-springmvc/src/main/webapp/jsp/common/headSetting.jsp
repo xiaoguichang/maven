@@ -10,7 +10,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="keywords" content="index">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="renderer" content="webkit">
+<meta name="renderer" content="webkit">iin
 <meta http-equiv="Cache-Control" content="no-siteapp" />
 <link rel="icon" type="image/png" href="${ctx}/jsp/common/assets/i/app-icon72x72@2x.png">
 <link rel="apple-touch-icon-precomposed" href="${ctx}/jsp/common/assets/i/app-icon72x72@2x.png">
@@ -18,5 +18,6 @@
 <script src="${ctx}/jsp/common/assets/js/echarts.min.js"></script>
 <link rel="stylesheet" href="${ctx}/jsp/common/assets/css/amazeui.min.css" />
 <link rel="stylesheet" href="${ctx}/jsp/common/assets/css/amazeui.datatables.min.css" />
-<link rel="stylesheet" href="${ctx}/jsp/common/assets/css/app.css">
+<link rel="stylesheet" href="${ctx}/jsp/common/assets/css/app.css?time=5">
 <script src="${ctx}/jsp/common/assets/js/jquery.min.js"></script>
+<script src="${ctx}/jsp/common/assets/js/app.js?time=18"></script>

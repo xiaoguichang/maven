@@ -23,6 +23,9 @@ public class AuthConfig implements Serializable {
     @Value("${auth.loginpage.path}")
     private String loginPagePath;
 
+    @Value("${auth.session.expiredTime:1800}")
+    private int expiredTime;
+
     public String getUserInfo() {
         return userInfo;
     }
@@ -63,5 +66,13 @@ public class AuthConfig implements Serializable {
 
     public void setLoginPagePath(String loginPagePath) {
         this.loginPagePath = loginPagePath;
+    }
+
+    public int getExpiredTime() {
+        return expiredTime;
+    }
+
+    public void setExpiredTime(int expiredTime) {
+        this.expiredTime = expiredTime;
     }
 }

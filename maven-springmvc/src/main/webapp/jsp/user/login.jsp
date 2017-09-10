@@ -55,6 +55,7 @@
                 -webkit-box-shadow: 0 0 0px 1000px white inset;
                 -webkit-text-fill-color: #333;
             }
+
         </style>
     </head>
 
@@ -95,7 +96,7 @@
                             <label for="remember-me" >记住密码</label>
                         </div>
                         <div class="am-form-group">
-                            <button type="submit" class="am-btn am-btn-primary  am-btn-block tpl-btn-bg-color-success  tpl-login-btn">登录</button>
+                            <button type="button" onclick="login('${ctx}/user/login' , '${ctx}/user/index')" class="am-btn am-btn-primary  am-btn-block tpl-btn-bg-color-success  tpl-login-btn">登录</button>
                         </div>
                     </form>
                 </div>
@@ -114,8 +115,16 @@
                     <p>京ICP备13033158</p>
                 </div>
             </footer>
+
+            <div class="am-modal am-modal-loading am-modal-no-btn loading-flow " tabindex="-1" id="my-modal-loading">
+                <div class="am-modal-dialog">
+                    <div class="am-modal-hd">正在载入...</div>
+                    <div class="am-modal-bd">
+                        <span class="am-icon-spinner am-icon-spin"></span>
+                    </div>
+                </div>
+            </div>
         </div>
         <script src="${ctx}/jsp/common/assets/js/amazeui.min.js"></script>
-        <script src="${ctx}/jsp/common/assets/js/app.js"></script>
     </body>
 </html>
