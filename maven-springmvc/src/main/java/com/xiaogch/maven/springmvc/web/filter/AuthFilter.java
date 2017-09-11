@@ -1,9 +1,11 @@
 package com.xiaogch.maven.springmvc.web.filter;
 
+import com.alibaba.fastjson.JSONObject;
 import com.xiaogch.maven.common.util.SpringContextHolder;
 import com.xiaogch.maven.springmvc.config.AuthConfig;
 import com.xiaogch.maven.springmvc.entity.SystemUserInfoBean;
 import com.xiaogch.maven.springmvc.service.AuthService;
+import com.xiaogch.maven.springmvc.web.controller.BaseController;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.util.StringUtils;
@@ -60,8 +62,20 @@ public class AuthFilter implements Filter {
             filterChain.doFilter(servletRequest , servletResponse);
             return;
         }
-        HttpServletResponse response = (HttpServletResponse) servletResponse;
-        response.sendRedirect(authConfig.getLoginPagePath());
+
+
+
+        if ("XMLHttpRequest".equals(request.getHeader("X-Requested-With"))) {
+            BaseController baseController = new BaseController();
+            servletResponse.setContentType("text/plain;charset=UTF-8");
+            ServletOutputStream outputStream = servletResponse.getOutputStream();
+            outputStream.println(baseController.toResponseContent(-1 , "" , new JSONObject()));
+            outputStream.flush();
+        } else {
+            HttpServletResponse response = (HttpServletResponse) servletResponse;
+            response.sendRedirect(authConfig.getLoginPagePath());
+        }
+
     }
 
     @Override

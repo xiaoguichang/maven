@@ -11,6 +11,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DuplicateKeyException;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
 import org.springframework.util.StringUtils;
 import org.springframework.validation.Errors;
 import org.springframework.validation.ObjectError;
@@ -62,6 +63,7 @@ public class SystemUserInfoController extends BaseController {
                 return toFailureResponseContent("用户名或密码错误！");
             } else {
                 request.getSession().setAttribute(authConfig.getUserInfo() , userInfoBean);
+                request.getSession().setMaxInactiveInterval(authConfig.getExpiredTime());
                 return toSuccessResponseContent();
             }
         } catch (Exception e) {
@@ -101,12 +103,23 @@ public class SystemUserInfoController extends BaseController {
 
 
     @RequestMapping("index")
-    public String index(HttpServletRequest request , HttpServletResponse response) throws IOException {
-        return "user/index";
+    public String index(HttpServletRequest request , HttpServletResponse response , ModelMap modelMap) throws IOException {
+        try {
+            modelMap.put("nickname", ((SystemUserInfoBean) request.getSession().getAttribute(authConfig.getUserInfo())).getNickname());
+            return "user/index";
+        } catch (Exception e) {
+            return "user/index";
+        }
     }
 
     @RequestMapping("home")
     public String home(HttpServletRequest request , HttpServletResponse response) throws IOException {
         return "user/login";
+    }
+
+    @RequestMapping("logout")
+    public String logout(HttpServletRequest request , HttpServletResponse response) throws IOException {
+        request.getSession().removeAttribute(authConfig.getUserInfo());
+        return toSuccessResponseContent();
     }
 }

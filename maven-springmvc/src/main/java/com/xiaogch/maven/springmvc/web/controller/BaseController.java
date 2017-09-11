@@ -16,6 +16,7 @@ public class BaseController {
 
     protected final int resultCodeSuccess = 1;
     protected final int resultCodeFailure = 0;
+
     protected final String defaultDateFormat = "yyyy-MM-dd HH:mm:ss";
 
     protected String toFailureResponseContent(Errors errors) {
@@ -32,11 +33,11 @@ public class BaseController {
     }
 
     protected String toFailureResponseContent(String message) {
-        return toFailureResponseContent(message , "{}");
+        return toFailureResponseContent(message , new JSONObject());
     }
 
     protected String toSuccessResponseContent() {
-        return toSuccessResponseContent("{}");
+        return toSuccessResponseContent(new JSONObject());
     }
 
     protected String toSuccessResponseContent(Object data) {
@@ -55,11 +56,15 @@ public class BaseController {
         return toResponseContent(resultCodeFailure , message , data , dateFormat);
     }
 
-    protected String toResponseContent(int resultCode , String message , Object data , String dateFormat) {
+    public String toResponseContent(int resultCode , String message , Object data) {
+        return toResponseContent(resultCode , message , data , defaultDateFormat);
+    }
+
+    public String toResponseContent(int resultCode , String message , Object data , String dateFormat) {
         JSONObject jsonObject = new JSONObject();
         jsonObject.put("resultCode" , resultCode);
         jsonObject.put("message" , message);
-        jsonObject.put("data" , data == null ? "{}" : data);
+        jsonObject.put("data" , data == null ? new JSONObject() : data);
         return JSONObject.toJSONStringWithDateFormat(jsonObject , dateFormat , SerializerFeature.WriteMapNullValue);
     }
 

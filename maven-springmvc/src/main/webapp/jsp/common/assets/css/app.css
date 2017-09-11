@@ -1909,4 +1909,18 @@ ul.tpl-dropdown-content .tpl-dropdown-menu-messages-item .menu-messages-content 
     top: 112px;
     right: 0;
   }
+
+  .loading-flow {
+    opacity: 0.8;
+  }
+
+  .am-modal-dialog {
+    width:200px;
+    color: #0c79b1;
+  }
+
+  .am-tabs-bd {
+    border: 0px solid!important;
+    border-top: 1px solid!important;
+  }
 }
