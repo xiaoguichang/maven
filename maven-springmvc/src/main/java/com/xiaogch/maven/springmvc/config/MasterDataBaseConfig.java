@@ -25,7 +25,7 @@ import javax.sql.DataSource;
  * Created by Administrator on 2017/7/11 0011.
  */
 @Configuration
-@MapperScan(basePackages = "com.xiaogch.maven.springmvc.dao.scan" , sqlSessionFactoryRef = "masterSqlSessionFactory")
+@MapperScan(basePackages = "com.xiaogch.maven.*.dao.scan" , sqlSessionFactoryRef = "masterSqlSessionFactory")
 public class MasterDataBaseConfig {
 
     Logger logger = LoggerFactory.getLogger(getClass());

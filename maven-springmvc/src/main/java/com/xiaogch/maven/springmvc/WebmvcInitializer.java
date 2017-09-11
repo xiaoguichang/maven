@@ -45,14 +45,14 @@ public class WebmvcInitializer extends AbstractAnnotationConfigDispatcherServlet
         encodeFilter.setEncoding("utf-8");
         FilterRegistration.Dynamic filterDynamic = servletContext.addFilter("encodeFilter" , encodeFilter);
         filterDynamic.addMappingForUrlPatterns(null , false , "/*");
-        filterDynamic = servletContext.addFilter("authFilter" , AuthFilter.class);
-        filterDynamic.addMappingForUrlPatterns(null , false , "/*");
+//        filterDynamic = servletContext.addFilter("authFilter" , AuthFilter.class);
+//        filterDynamic.addMappingForUrlPatterns(null , false , "/*");
 
     }
 
     private void registerServlet(ServletContext servletContext) {
-        ServletRegistration.Dynamic servletDynamic = servletContext.addServlet("myServlet" , new MyServlet());
-        servletDynamic.addMapping("/myServlet.do");
+//        ServletRegistration.Dynamic servletDynamic = servletContext.addServlet("myServlet" , new MyServlet());
+//        servletDynamic.addMapping("/myServlet.do");
     }
 
     private void registerListener(ServletContext servletContext) {
