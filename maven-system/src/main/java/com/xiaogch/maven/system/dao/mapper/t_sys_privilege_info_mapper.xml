@@ -3,7 +3,7 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.xiaogch.maven.springmvc.entity.SystemPrivilegeInfoBean">
 
-    <resultMap id="systemPrivilegeInfoBean" type="com.xiaogch.maven.springmvc.entity.SystemPrivilegeInfoBean">
+    <resultMap id="systemPrivilegeInfoBean" type="com.xiaogch.maven.system.entity.PrivilegeInfoBean">
         <result property="privilegeId" column="privilege_id"/>
         <result property="privilegeName" column="privilege_name"/>
         <result property="privilegeType" column="privilege_type"/>
@@ -55,12 +55,12 @@
         </if>
     </sql>
 
-    <insert id="insert" parameterType="com.xiaogch.maven.springmvc.entity.SystemPrivilegeInfoBean" useGeneratedKeys="true" keyProperty="privilegeId">
+    <insert id="insert" parameterType="com.xiaogch.maven.system.entity.PrivilegeInfoBean" useGeneratedKeys="true" keyProperty="privilegeId">
         insert into t_sys_privilege_info(privilege_name , privilege_type , privilege_entity , parent_privilege_id , status , create_time)
         values (#{privilegeName} , #{privilegeType} , #{privilegeEntity} , #{parentPrivilegeId} , 1, now());
     </insert>
 
-    <update id="update" parameterType="com.xiaogch.maven.springmvc.entity.SystemPrivilegeInfoBean">
+    <update id="update" parameterType="com.xiaogch.maven.system.entity.PrivilegeInfoBean">
         update t_sys_privilege_info
         SET
         privilege_id = #{privilegeId}

@@ -14,7 +14,6 @@ import java.util.Map;
 @Service("userInfoService")
 public class UserInfoServiceImpl extends BaseServiceImpl<UserInfoBean> implements UserInfoService {
 
-
     @Autowired
     private UserInfoDao userInfoDao;
 

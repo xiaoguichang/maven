@@ -19,6 +19,7 @@
         <module>../maven-activiti</module>
         <module>../maven-wechat</module>
         <module>../maven-system</module>
+        <module>../maven-pms</module>
     </modules>
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
