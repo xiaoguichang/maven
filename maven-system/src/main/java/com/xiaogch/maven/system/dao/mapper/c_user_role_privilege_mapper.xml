@@ -1,0 +1,259 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="system.userRolePrivilegeRelVO">
+
+    <resultMap id="userRolePrivilegeRelVO" type="com.xiaogch.maven.system.entity.UserRolePrivilegeRelVO">
+        <result property="userId" column="user_id"/>
+        <result property="userName" column="user_name"/>
+        <result property="nickname" column="nickName"/>
+        <result property="roleId" column="role_id"/>
+        <result property="roleName" column="role_name"/>
+        <result property="privilegeId" column="privilege_id"/>
+        <result property="privilegeName" column="privilege_name"/>
+        <result property="privilegeType" column="privilege_type"/>
+        <result property="parentPrivilegeId" column="parent_privilege_id"/>
+        <result property="privilegeEntity" column="privilege_entity"/>
+    </resultMap>
+
+    <insert id="insertUserRoleRel" parameterType="com.xiaogch.maven.system.entity.UserRoleRelVO">
+        insert into t_sys_user_role_rel(user_id , role_id , status)
+        values (#{userId} , #{roleId} , 1)
+        on duplicate key update status = 1;
+    </insert>
+
+    <insert id="batchInsertUserRoleRel">
+        insert into t_sys_user_role_rel(user_id , role_id , status)
+        values
+        <foreach item="item" index="index" collection="list" open="(" separator="," close=")">
+              #{userId} , #{roleId} , 1
+        </foreach>
+        on duplicate key update status = 1;
+    </insert>
+    <insert id="batchInsertRolePrivilegeRel">
+        insert into t_sys_role_privilege_rel(role_id ,  privilege_id , status)
+        values
+        <foreach item="item" index="index" collection="list" open="(" separator="," close=")">
+            #{roleId} , #{privilegeId} , 1
+        </foreach>
+        on duplicate key update status = 1;
+    </insert>
+
+
+    <insert id="insertRolePrivilegeRel" parameterType="com.xiaogch.maven.system.entity.RolePrivilegeVO">
+        insert into t_sys_role_privilege_rel(role_id ,  privilege_id , status)
+        values (#{roleId} , #{privilegeId} , 1)
+        on duplicate key update status = 1;
+    </insert>
+
+    <update id="updateUserRoleRel" parameterType="map">
+        update t_sys_user_role_rel
+        set status = #{status}
+        where user_id = #{userId}
+          and role_id = #{roleId}
+    </update>
+
+    <update id="batchpdateUserRoleRel">
+        <foreach item="item" index="index" collection="list" open=" " separator="," close=" ">
+            update t_sys_user_role_rel
+            set status = #{status}
+            where user_id = #{userId}
+            and role_id = #{roleId}
+        </foreach>
+    </update>
+
+    <update id="batchUpdateRolePrivilegeRel">
+        <foreach item="item" index="index" collection="list" open=" " separator="," close=" ">
+            update t_sys_role_privilege_rel
+            set status = #{status}
+            where privilege_id = #{privilegeId}
+            and role_id = #{roleId}
+        </foreach>
+    </update>
+
+    <update id="updateRolePrivilegeRel" parameterType="map">
+        update t_sys_role_privilege_rel
+        set status = #{status}
+        where privilege_id = #{privilegeId}
+          and role_id = #{roleId}
+    </update>
+
+
+
+
+    <sql id="selectWhereCondition_userRoleRel">
+        <if test="userId != null">
+          and a.user_id = #{userId}
+        </if>
+        <if test="userName != null">
+          and a.user_name = #{userName}
+        </if>
+        <if test="nickName != null">
+          and a.nickName = #{nickName}
+        </if>
+        <if test="roleName != null">
+          and b.role_name = #{roleame}
+        </if>
+        <if test="roleId != null">
+          and b.role_id = #{roleId}
+        </if>
+    </sql>
+
+    <sql id="selectWhereCondition_rolePrivilegeRel">
+        <if test="roleName != null">
+            and a.role_name = #{roleame}
+        </if>
+        <if test="roleId != null">
+            and a.role_id = #{roleId}
+        </if>
+        <if test="privilegeName != null" >
+            and b.privilege_name like concat('%' , #{privilegeName} , '%')
+        </if>
+        <if test="privilegeType != null" >
+            and b.privilege_type = #{privilegeType}
+        </if>
+        <if test="parentPrivilegeId != null" >
+            and b.parent_privilege_id = #{parentPrivilegeId}
+        </if>
+        <if test="privilegeEntity != null" >
+            and c.privilege_entity = #{privilegeEntity}
+        </if>
+    </sql>
+
+    <sql id="selectWhereCondition_userRolePrivilegeRel">
+        <if test="userId != null">
+            and a.user_id = #{userId}
+        </if>
+        <if test="userName != null">
+            and a.user_name = #{userName}
+        </if>
+        <if test="nickName != null">
+            and a.nickName = #{nickName}
+        </if>
+        <if test="roleName != null">
+            and b.role_name = #{roleame}
+        </if>
+        <if test="roleId != null">
+            and b.role_id = #{roleId}
+        </if>
+        <if test="privilegeName != null" >
+            and c.privilege_name like concat('%' , #{privilegeName} , '%')
+        </if>
+        <if test="privilegeType != null" >
+            and c.privilege_type = #{privilegeType}
+        </if>
+        <if test="parentPrivilegeId != null" >
+            and c.parent_privilege_id = #{parentPrivilegeId}
+        </if>
+        <if test="privilegeEntity != null" >
+            and c.privilege_entity = #{privilegeEntity}
+        </if>
+    </sql>
+
+    <sql id="selectWhereCondition_userPrivilegeRel">
+        <if test="userId != null">
+            and a.user_id = #{userId}
+        </if>
+        <if test="userName != null">
+            and a.user_name = #{userName}
+        </if>
+        <if test="nickName != null">
+            and a.nickName = #{nickName}
+        </if>
+        <if test="privilegeName != null" >
+            and c.privilege_name like concat('%' , #{privilegeName} , '%')
+        </if>
+        <if test="privilegeType != null" >
+            and c.privilege_type = #{privilegeType}
+        </if>
+        <if test="parentPrivilegeId != null" >
+            and c.parent_privilege_id = #{parentPrivilegeId}
+        </if>
+        <if test="privilegeEntity != null" >
+            and c.privilege_entity = #{privilegeEntity}
+        </if>
+    </sql>
+
+    <select id="selectUserRoleRelAll" resultMap="userRolePrivilegeRelVO" parameterType="map">
+      select a.user_id , a.user_name , a.nickname , b.role_id , b.role_name
+      from t_sys_user_info a , t_sys_role_info b , t_sys_user_role_rel c
+      where a.user_id = c.user_id
+        and b.role_id = c.role_id
+        and c.status = 1
+      <include refid="selectWhereCondition_userRoleRel"/>
+    </select>
+    <select id="selectUserRoleRelAll_count" resultType="int">
+      select COUNT(1)
+      from t_sys_user_info a , t_sys_role_info b , t_sys_user_role_rel c
+      where a.user_id = c.user_id
+        and b.role_id = c.role_id
+        and c.status = 1
+        <include refid="selectWhereCondition_userRoleRel"/>
+    </select>
+
+    <select id="selectRolePrivilegeRelAll" resultMap="userRolePrivilegeRelVO">
+      select a.role_id , a.role_name , b.privilege_id , b.privilege_name , b.privilege_type , b.privilege_entity
+      from t_sys_role_info a , t_sys_privilege_info b , t_sys_role_privilege_rel c
+      where a.role_id = c.role_id
+        and b.privilege_id = c.privilege_id
+        and c.status = 1
+        <include refid="selectWhereCondition_rolePrivilegeRel"/>
+    </select>
+
+    <select id="selectRolePrivilegeRelAll_count" resultType="int">
+        select COUNT(1)
+        from t_sys_role_info a , t_sys_privilege_info b , t_sys_role_privilege_rel c
+        where a.role_id = c.role_id
+        and b.privilege_id = c.privilege_id
+        and c.status = 1
+        <include refid="selectWhereCondition_rolePrivilegeRel"/>
+    </select>
+
+    <select id="selectUserRolePrivilegeRelAll" resultMap="userRolePrivilegeRelVO">
+        select a.user_id , a.user_name , a.nickname , b.role_id , b.role_name , c.privilege_id , c.privilege_name , c.privilege_type , c.privilege_entity , c.parent_privilege_id
+        from t_sys_user_info a , t_sys_role_info b , t_sys_privilege_info c , t_sys_user_role_rel d , t_sys_role_privilege_rel e
+        where a.user_id = d.user_id
+        and d.role_id  = b.role_id
+        and d.role_id = e.role_id
+        and e.privilege_id = c.privilege_id
+        and d.status = 1
+        and e.status = 1
+        <include refid="selectWhereCondition_userRolePrivilegeRel"/>
+    </select>
+
+    <select id="selectUserRolePrivilegeRelAll_count" resultType="int">
+        select COUNT(1)
+        from t_sys_user_info a , t_sys_role_info b , t_sys_privilege_info c , t_sys_user_role_rel d , t_sys_role_privilege_rel e
+        where a.user_id = d.user_id
+        and d.role_id  = b.role_id
+        and d.role_id = e.role_id
+        and e.privilege_id = c.privilege_id
+        and d.status = 1
+        and e.status = 1
+        <include refid="selectWhereCondition_userRolePrivilegeRel"/>
+    </select>
+
+    <select id="selectUserPrivilegeRelAll" resultMap="userRolePrivilegeRelVO">
+        select a.user_id , a.user_name , a.nickname , c.privilege_id , c.privilege_name , c.privilege_type , c.privilege_entity , c.parent_privilege_id
+        from t_sys_user_info a , t_sys_privilege_info c , t_sys_user_role_rel d , t_sys_role_privilege_rel e
+        where a.user_id = d.user_id
+        and d.role_id = e.role_id
+        and e.privilege_id = c.privilege_id
+        and d.status = 1
+        and e.status = 1
+        <include refid="selectWhereCondition_userRolePrivilegeRel"/>
+    </select>
+
+    <select id="selectUserPrivilegeRelAll_count" resultType="int">
+        select COUNT(1)
+        from t_sys_user_info a , t_sys_privilege_info c , t_sys_user_role_rel d , t_sys_role_privilege_rel e
+        where a.user_id = d.user_id
+        and d.role_id = e.role_id
+        and e.privilege_id = c.privilege_id
+        and d.status = 1
+        and e.status = 1
+        <include refid="selectWhereCondition_userRolePrivilegeRel"/>
+    </select>
+
+
+</mapper>

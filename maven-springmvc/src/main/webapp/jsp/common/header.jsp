@@ -30,7 +30,7 @@
             <ul>
                 <!-- 欢迎语 -->
                 <li class="am-text-sm tpl-header-navbar-welcome">
-                    <a href="javascript:;">欢迎你, <span>Amaze UI</span> </a>
+                    <a href="javascript:;">欢迎你, <span>{nickname}</span> </a>
                 </li>
 
                 <!-- 新邮件 -->
@@ -147,4 +147,27 @@
             </ul>
         </div>
     </div>
+    <%--<script src="${ctx}/jsp/common/assets/js/websoket.js"/>--%>
+    <script type="text/javascript">
+        $(function(){
+            if ("WebSocket" in window) {
+                console.info("您的浏览器支持 WebSocket!");
+                var ws = new WebSocket("ws://localhost:8080/springmvc/websocket/pushMessage");
+                ws.onopen = function(){
+                    console.info("webSocket connect is ok !");
+                    ws.send("{'message':'hello'}");
+                };
+                ws.onmessage = function (evt) {
+                    var received_msg = eval("(" + evt.data + ")");
+
+                    console.info("received message received_msg=" + received_msg + "code=" + received_msg.code + " message=" + received_msg.message);
+                };
+                ws.onclose = function() {
+                    console.info("connection has be closed ...");
+                };
+            } else {
+                console.info("您的浏览器不支持 WebSocket!");
+            }
+        });
+    </script>
 </header>
