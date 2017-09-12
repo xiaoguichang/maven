@@ -129,7 +129,7 @@ function addTab(id , title , url) {
     $nav.append(nav);
     $bd.find('.am-active').removeClass("am-active");
     $bd.append(content);
-    $("#" + contentId).load(url);
+    $("#" + contentId).load(ctx + url);
     bindOnClinkToTab();
 }
 

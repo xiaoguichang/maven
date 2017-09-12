@@ -15,10 +15,7 @@ import java.util.List;
 import java.util.Properties;
 
 /**
- * ProjectName: dailyreport-parent <BR>
- * File name: com.shangde.dailyreport.util <BR>
  * Author: guich <BR>
- * Project: dailyreport-parent <BR>
  * Version: v 1.0 <BR>
  * Date: 2017/8/16 18:04 <BR>
  * Description: <BR>

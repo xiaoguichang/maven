@@ -9,12 +9,7 @@
     <name>maven-base</name>
     <url>http://maven.apache.org</url>
     <modules>
-        <module>../maven-mybatis</module>
         <module>../maven-common</module>
-        <module>../maven-spring</module>
-        <module>../maven-redis</module>
-        <module>../maven-springmvc</module>
-        <module>../maven-pattern</module>
         <module>../maven-jvm</module>
         <module>../maven-activiti</module>
         <module>../maven-wechat</module>

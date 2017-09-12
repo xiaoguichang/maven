@@ -4,10 +4,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
 /**
- * ProjectName: maven <BR>
- * File name: com.xiaogch.maven.wechat.core <BR>
  * Author: guich <BR>
- * Project: maven <BR>
  * Version: v 1.0 <BR>
  * Date: 2017/8/30 14:19 <BR>
  * Description: <BR>

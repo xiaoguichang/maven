@@ -8,10 +8,7 @@ import java.io.ByteArrayInputStream;
 import static org.junit.Assert.*;
 
 /**
- * ProjectName: maven <BR>
- * File name: com.xiaogch.maven.wechat.core.entity <BR>
  * Author: guich <BR>
- * Project: maven <BR>
  * Version: v 1.0 <BR>
  * Date: 2017/8/30 13:50 <BR>
  * Description: <BR>

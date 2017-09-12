@@ -4,6 +4,7 @@ import com.xiaogch.maven.common.db.BaseDao;
 import com.xiaogch.maven.common.db.bean.PagedList;
 import com.xiaogch.maven.common.db.impl.BaseServiceImpl;
 import com.xiaogch.maven.system.dao.UserRolePrivilegeRelDao;
+import com.xiaogch.maven.system.entity.MenuVO;
 import com.xiaogch.maven.system.entity.RolePrivilegeVO;
 import com.xiaogch.maven.system.entity.UserRolePrivilegeRelVO;
 import com.xiaogch.maven.system.entity.UserRoleRelVO;
@@ -110,5 +111,10 @@ public class UserRolePrivilegeRelServiceImpl extends BaseServiceImpl<UserRolePri
     @Override
     public int batchUpdateRolePrivilegeRel(List<RolePrivilegeVO> rolePrivilegeVOs) {
         return userRolePrivilegeRelDao.batchUpdateRolePrivilegeRel(rolePrivilegeVOs);
+    }
+
+    @Override
+    public List<MenuVO> selectMenuByUserId(Integer userId) {
+        return userRolePrivilegeRelDao.selectList("selectMenuByUserId" , userId);
     }
 }

@@ -3,19 +3,24 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="system.roleInfoBean">
 
-    <resultMap id="sysRoleInfoBean" type="com.xiaogch.maven.system.entity.RoleInfoBean">
+    <resultMap id="roleInfoBean" type="com.xiaogch.maven.system.entity.RoleInfoBean">
         <result property="roleId" column="role_id"/>
+        <result property="roleKey" column="role_key"/>
         <result property="roleName" column="role_name"/>
         <result property="roleRemark" column="role_remark"/>
     </resultMap>
 
 
     <insert id="insert" parameterType="com.xiaogch.maven.system.entity.RoleInfoBean" useGeneratedKeys="true" keyProperty="roleId">
-      insert into t_sys_role_info(role_name , role_remark)
-        values (#{roleName} , #{roleRemark});
+      insert into t_sys_role_info(role_key , role_name , role_remark)
+        values (#{roleKey} , #{roleName} , #{roleRemark});
     </insert>
 
-    <select id="selectList" resultMap="sysRoleInfoBean">
+    <select id="selectById" parameterType="int">
+        select * from t_sys_role_info where role_id = #{roleId};
+    </select>
+
+    <select id="selectList" resultMap="roleInfoBean">
         select * from t_sys_role_info;
     </select>
 

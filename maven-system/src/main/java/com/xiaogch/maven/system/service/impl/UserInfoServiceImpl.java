@@ -29,4 +29,11 @@ public class UserInfoServiceImpl extends BaseServiceImpl<UserInfoBean> implement
         queryParam.put("password" , password);
         return userInfoDao.selectOne("selectByUserNameAndPasswod" , queryParam);
     }
+
+    @Override
+    public UserInfoBean selectByUserName(String userName) {
+        return userInfoDao.selectOne("selectByUserName" , userName);
+    }
+
+
 }

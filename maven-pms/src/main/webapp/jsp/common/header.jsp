@@ -30,7 +30,7 @@
             <ul>
                 <!-- 欢迎语 -->
                 <li class="am-text-sm tpl-header-navbar-welcome">
-                    <a href="javascript:;">欢迎你, <span>{nickname}</span> </a>
+                    <a href="javascript:;">欢迎你, <span>${nickname}</span> </a>
                 </li>
 
                 <!-- 新邮件 -->
@@ -140,7 +140,7 @@
 
                 <!-- 退出 -->
                 <li class="am-text-sm">
-                    <a href="javascript:;">
+                    <a href="javascript:;" id="my-sign-out">
                         <span class="am-icon-sign-out"></span> 退出
                     </a>
                 </li>
@@ -150,9 +150,10 @@
     <%--<script src="${ctx}/jsp/common/assets/js/websoket.js"/>--%>
     <script type="text/javascript">
         $(function(){
+            $("#my-sign-out").bind('click' , signOut);
             if ("WebSocket" in window) {
                 console.info("您的浏览器支持 WebSocket!");
-                var ws = new WebSocket("ws://localhost:8080/maven-war/websocket/pushMessage");
+                var ws = new WebSocket("ws://localhost:8080${ctx}/websocket/pushMessage");
                 ws.onopen = function(){
                     console.info("webSocket connect is ok !");
                     ws.send("{'message':'hello'}");
@@ -168,6 +169,8 @@
             } else {
                 console.info("您的浏览器不支持 WebSocket!");
             }
+            
+
         });
     </script>
 </header>

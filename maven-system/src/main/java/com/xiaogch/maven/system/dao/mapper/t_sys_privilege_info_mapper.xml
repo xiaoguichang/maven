@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.xiaogch.maven.springmvc.entity.SystemPrivilegeInfoBean">
+<mapper namespace="system.privilegeInfoBean">
 
-    <resultMap id="systemPrivilegeInfoBean" type="com.xiaogch.maven.system.entity.PrivilegeInfoBean">
+    <resultMap id="privilegeInfoBean" type="com.xiaogch.maven.system.entity.PrivilegeInfoBean">
         <result property="privilegeId" column="privilege_id"/>
         <result property="privilegeName" column="privilege_name"/>
         <result property="privilegeType" column="privilege_type"/>
@@ -68,13 +68,13 @@
         where privilege_id = #{privilegeId}
     </update>
 
-    <select id="selectById" parameterType="integer" resultMap="systemPrivilegeInfoBean">
+    <select id="selectById" parameterType="integer" resultMap="privilegeInfoBean">
         select privilege_id , privilege_name , privilege_type , privilege_entity , parent_privilege_id , status , create_time
         from t_sys_privilege_info
-        where user_id = #{userId};
+        where privilege_id = #{privilegeId};
     </select>
 
-    <select id="selectList" resultMap="systemPrivilegeInfoBean" parameterType="map">
+    <select id="selectList" resultMap="privilegeInfoBean" parameterType="map">
         select privilege_id , privilege_name , privilege_type , privilege_entity , parent_privilege_id , status , create_time
         from t_sys_privilege_info
         where 1 = 1

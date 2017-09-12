@@ -3,6 +3,7 @@ package com.xiaogch.maven.common.db.bean;
 import java.io.Serializable;
 
 public class PagedInfoBean implements Serializable {
+
     private int currentPageNo; //当前页面
     private int pageSize; //每页数量
     private int totalPageSize; //总页数

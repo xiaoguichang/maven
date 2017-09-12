@@ -2,7 +2,7 @@ package com.xiaogch.maven.pms.websocket;
 
 
 import com.alibaba.fastjson.JSONObject;
-import com.xiaogch.maven.pms.config.ConfigFactory;
+import com.xiaogch.maven.common.config.ConfigFactory;
 import com.xiaogch.maven.system.entity.UserInfoBean;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

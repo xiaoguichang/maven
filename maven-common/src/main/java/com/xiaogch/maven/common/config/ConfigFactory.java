@@ -1,4 +1,4 @@
-package com.xiaogch.maven.pms.config;
+package com.xiaogch.maven.common.config;
 
 import com.xiaogch.maven.common.config.AuthConfig;
 import com.xiaogch.maven.common.util.SpringContextHolder;

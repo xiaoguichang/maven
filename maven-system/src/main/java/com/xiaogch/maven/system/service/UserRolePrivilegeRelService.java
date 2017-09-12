@@ -2,6 +2,7 @@ package com.xiaogch.maven.system.service;
 
 import com.xiaogch.maven.common.db.BaseService;
 import com.xiaogch.maven.common.db.bean.PagedList;
+import com.xiaogch.maven.system.entity.MenuVO;
 import com.xiaogch.maven.system.entity.RolePrivilegeVO;
 import com.xiaogch.maven.system.entity.UserRolePrivilegeRelVO;
 import com.xiaogch.maven.system.entity.UserRoleRelVO;
@@ -37,4 +38,6 @@ public interface UserRolePrivilegeRelService extends BaseService<UserRolePrivile
     int updateRolePrivilegeRel(RolePrivilegeVO rolePrivilegeVO);
     int batchUpdateUserRoleRel(List<UserRoleRelVO> userRoleRelVOs);
     int batchUpdateRolePrivilegeRel(List<RolePrivilegeVO> rolePrivilegeVOs);
+
+    List<MenuVO> selectMenuByUserId(Integer userId);
 }

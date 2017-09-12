@@ -1,8 +1,14 @@
 package com.xiaogch.maven.system.entity;
 
-public class RoleInfoBean {
+import javax.validation.constraints.NotEmpty;
+import java.io.Serializable;
+
+public class RoleInfoBean implements Serializable {
 
     private Integer roleId;
+    @NotEmpty(message = "角色标识不能为空")
+    private String roleKey;
+    @NotEmpty(message = "角色名不能为空")
     private String roleName;
     private String roleRemark;
 
@@ -12,6 +18,14 @@ public class RoleInfoBean {
 
     public void setRoleId(Integer roleId) {
         this.roleId = roleId;
+    }
+
+    public String getRoleKey() {
+        return roleKey;
+    }
+
+    public void setRoleKey(String roleKey) {
+        this.roleKey = roleKey;
     }
 
     public String getRoleName() {
@@ -34,6 +48,7 @@ public class RoleInfoBean {
     public String toString() {
         return "RoleInfoBean{" +
                 "roleId=" + roleId +
+                ", roleKey='" + roleKey + '\'' +
                 ", roleName='" + roleName + '\'' +
                 ", roleRemark='" + roleRemark + '\'' +
                 '}';

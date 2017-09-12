@@ -6,7 +6,7 @@ import java.util.Date;
 
 public class UserInfoBean implements Serializable {
 
-    protected String userId;
+    protected Integer userId;
     @NotEmpty(message = "userName 不能为空")
     protected String userName;
     @NotEmpty(message = "nickname 不能为空")
@@ -20,11 +20,11 @@ public class UserInfoBean implements Serializable {
     private Date createTime;
     private String remark;
 
-    public String getUserId() {
+    public Integer getUserId() {
         return userId;
     }
 
-    public void setUserId(String userId) {
+    public void setUserId(Integer userId) {
         this.userId = userId;
     }
 

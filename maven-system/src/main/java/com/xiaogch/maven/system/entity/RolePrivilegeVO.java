@@ -1,10 +1,7 @@
 package com.xiaogch.maven.system.entity;
 
 /**
- * ProjectName: maven <BR>
- * File name: com.xiaogch.maven.springmvc.entity <BR>
  * Author: guich <BR>
- * Project: maven <BR>
  * Version: v 1.0 <BR>
  * Date: 2017/9/8 11:54 <BR>
  * Description: <BR>

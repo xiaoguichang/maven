@@ -16,6 +16,13 @@
         <result property="privilegeEntity" column="privilege_entity"/>
     </resultMap>
 
+    <resultMap id="menuVO" type="com.xiaogch.maven.system.entity.MenuVO">
+        <result property="menuId" column="privilege_id"/>
+        <result property="menuName" column="privilege_name"/>
+        <result property="parentMenuId" column="parent_privilege_id"/>
+        <result property="menuEntity" column="privilege_entity"/>
+    </resultMap>
+
     <insert id="insertUserRoleRel" parameterType="com.xiaogch.maven.system.entity.UserRoleRelVO">
         insert into t_sys_user_role_rel(user_id , role_id , status)
         values (#{userId} , #{roleId} , 1)
@@ -225,11 +232,11 @@
         select COUNT(1)
         from t_sys_user_info a , t_sys_role_info b , t_sys_privilege_info c , t_sys_user_role_rel d , t_sys_role_privilege_rel e
         where a.user_id = d.user_id
-        and d.role_id  = b.role_id
-        and d.role_id = e.role_id
-        and e.privilege_id = c.privilege_id
-        and d.status = 1
-        and e.status = 1
+            and d.role_id  = b.role_id
+            and d.role_id = e.role_id
+            and e.privilege_id = c.privilege_id
+            and d.status = 1
+            and e.status = 1
         <include refid="selectWhereCondition_userRolePrivilegeRel"/>
     </select>
 
@@ -237,10 +244,10 @@
         select a.user_id , a.user_name , a.nickname , c.privilege_id , c.privilege_name , c.privilege_type , c.privilege_entity , c.parent_privilege_id
         from t_sys_user_info a , t_sys_privilege_info c , t_sys_user_role_rel d , t_sys_role_privilege_rel e
         where a.user_id = d.user_id
-        and d.role_id = e.role_id
-        and e.privilege_id = c.privilege_id
-        and d.status = 1
-        and e.status = 1
+            and d.role_id = e.role_id
+            and e.privilege_id = c.privilege_id
+            and d.status = 1
+            and e.status = 1
         <include refid="selectWhereCondition_userRolePrivilegeRel"/>
     </select>
 
@@ -248,11 +255,26 @@
         select COUNT(1)
         from t_sys_user_info a , t_sys_privilege_info c , t_sys_user_role_rel d , t_sys_role_privilege_rel e
         where a.user_id = d.user_id
-        and d.role_id = e.role_id
-        and e.privilege_id = c.privilege_id
-        and d.status = 1
-        and e.status = 1
+            and d.role_id = e.role_id
+            and e.privilege_id = c.privilege_id
+            and d.status = 1
+            and e.status = 1
         <include refid="selectWhereCondition_userRolePrivilegeRel"/>
+    </select>
+
+
+    <select id="selectMenuByUserId" resultMap="menuVO" parameterType="int">
+        select c.privilege_id , c.privilege_name , c.privilege_entity , c.parent_privilege_id
+        from t_sys_user_info a , t_sys_role_info b , t_sys_privilege_info c , t_sys_user_role_rel d , t_sys_role_privilege_rel e
+        where a.user_id = d.user_id
+            and d.role_id  = b.role_id
+            and d.role_id = e.role_id
+            and e.privilege_id = c.privilege_id
+            and d.status = 1
+            and e.status = 1
+            and c.privilege_type = 1
+            and a.user_id = #{userId}
+        order by parent_privilege_id , privilege_id
     </select>
 
 

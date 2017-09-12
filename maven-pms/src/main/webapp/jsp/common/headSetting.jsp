@@ -20,4 +20,5 @@
 <link rel="stylesheet" href="${ctx}/jsp/common/assets/css/amazeui.datatables.min.css" />
 <link rel="stylesheet" href="${ctx}/jsp/common/assets/css/app.css?time=5">
 <script src="${ctx}/jsp/common/assets/js/jquery.min.js"></script>
-<script src="${ctx}/jsp/common/assets/js/app.js?time=18"></script>
+<script src="${ctx}/jsp/common/assets/js/app.js?time=21"></script>
+<script src="${ctx}/jsp/common/assets/js/url.js?time=18"></script>

@@ -7,4 +7,6 @@ public interface UserInfoService extends BaseService<UserInfoBean> {
 
     UserInfoBean selectByUserNameAndPasswod(String userName , String password);
 
+    UserInfoBean selectByUserName(String userName);
+
 }

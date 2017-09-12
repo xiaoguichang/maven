@@ -44,27 +44,36 @@ public class UserInfoController extends BaseController {
         webDataBinder.registerCustomEditor(Date.class , new StringToDateBinder("yyyy-MM-dd HH:mm:ss"));
     }
 
-    @RequestMapping("login")
-    @ResponseBody
-    public String login(HttpServletRequest request , HttpServletResponse response ,
-                @RequestParam(value = "userName") String userName, @RequestParam(value = "password") String password) {
-        logger.info("userName={} , password={}" , userName , password);
 
+    @RequestMapping("/index")
+    public String index(HttpServletRequest request , HttpServletResponse response , ModelMap modelMap) throws IOException {
         try {
-            String finalPassword = MessageDigestUtil.md5(password);
-            UserInfoBean userInfoBean = userInfoService.selectByUserNameAndPasswod(userName , finalPassword);
-            if (userInfoBean == null) {
-                return toFailureResponseContent("用户名或密码错误！");
-            } else {
-                request.getSession().setAttribute(authConfig.getUserInfo() , userInfoBean);
-                request.getSession().setMaxInactiveInterval(authConfig.getExpiredTime());
-                return toSuccessResponseContent();
-            }
+            return "system/user/index";
         } catch (Exception e) {
-            logger.error("login exception " , e);
-            return toFailureResponseContent("用户名或密码错误！");
+            return "system/user/index";
         }
     }
+
+    @RequestMapping("list")
+    @ResponseBody
+    public String list(HttpServletRequest request , HttpServletResponse response ,
+                      UserInfoBean userInfoBean , Errors errors) {
+        logger.info("request parameter is {}" , userInfoBean);
+//        if (errors.hasErrors()) {
+//            return toFailureResponseContent(errors);
+//        }
+//        try {
+//            String password = MessageDigestUtil.md5(userInfoBean.getPassword());
+//            userInfoBean.setPassword(password);
+//            userInfoService.insert(userInfoBean);
+//            return toSuccessResponseContent();
+//        } catch (Exception e) {
+//            logger.error("add user exception" , e);
+//            return toFailureResponseContent("新增用户失败，请联系系统管理员");
+//        }
+        return "";
+    }
+
 
     @RequestMapping("add")
     @ResponseBody
@@ -74,7 +83,6 @@ public class UserInfoController extends BaseController {
         if (errors.hasErrors()) {
             return toFailureResponseContent(errors);
         }
-
         try {
             String password = MessageDigestUtil.md5(userInfoBean.getPassword());
             userInfoBean.setPassword(password);
@@ -91,29 +99,5 @@ public class UserInfoController extends BaseController {
     public String update(HttpServletRequest request , HttpServletResponse response ,
                          UserInfoBean userInfoBean) throws IOException {
         return "";
-    }
-
-
-
-    @RequestMapping("index")
-    public String index(HttpServletRequest request , HttpServletResponse response , ModelMap modelMap) throws IOException {
-        try {
-            modelMap.put("nickname", ((UserInfoBean) request.getSession().getAttribute(authConfig.getUserInfo())).getNickname());
-            return "system/user/index";
-        } catch (Exception e) {
-            return "system/user/index";
-        }
-    }
-
-    @RequestMapping("home")
-    public String home(HttpServletRequest request , HttpServletResponse response) throws IOException {
-        return "system/user/login";
-    }
-
-    @RequestMapping("logout")
-    @ResponseBody
-    public String logout(HttpServletRequest request , HttpServletResponse response) throws IOException {
-        request.getSession().removeAttribute(authConfig.getUserInfo());
-        return toSuccessResponseContent();
     }
 }

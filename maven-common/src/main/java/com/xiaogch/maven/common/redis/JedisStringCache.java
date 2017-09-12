@@ -4,10 +4,7 @@ import redis.clients.jedis.Jedis;
 import redis.clients.jedis.JedisPool;
 
 /**
- * ProjectName: maven <BR>
- * File name: com.xiaogch.maven.common.redis <BR>
  * Author: guich <BR>
- * Project: maven <BR>
  * Version: v 1.0 <BR>
  * Date: 2017/8/30 19:15 <BR>
  * Description: <BR>

@@ -1,6 +1,7 @@
 package com.xiaogch.maven.system.entity;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
@@ -8,9 +9,9 @@ public class MenuVO implements Serializable {
 
     private Integer menuId;
     private String menuName;
-    private String menuType;
     private String menuEntity;
-    private List<MenuVO> childMenus;
+    private Integer parentMenuId;
+    private List<MenuVO> childMenus = new ArrayList<>();
 
     public Integer getMenuId() {
         return menuId;
@@ -28,14 +29,6 @@ public class MenuVO implements Serializable {
         this.menuName = menuName;
     }
 
-    public String getMenuType() {
-        return menuType;
-    }
-
-    public void setMenuType(String menuType) {
-        this.menuType = menuType;
-    }
-
     public String getMenuEntity() {
         return menuEntity;
     }
@@ -50,5 +43,13 @@ public class MenuVO implements Serializable {
 
     public void setChildMenus(List<MenuVO> childMenus) {
         this.childMenus = childMenus;
+    }
+
+    public Integer getParentMenuId() {
+        return parentMenuId;
+    }
+
+    public void setParentMenuId(Integer parentMenuId) {
+        this.parentMenuId = parentMenuId;
     }
 }

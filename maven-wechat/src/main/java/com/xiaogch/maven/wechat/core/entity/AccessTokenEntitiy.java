@@ -5,10 +5,7 @@ import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 
 /**
- * ProjectName: maven <BR>
- * File name: com.xiaogch.maven.wechat.core.entity <BR>
  * Author: guich <BR>
- * Project: maven <BR>
  * Version: v 1.0 <BR>
  * Date: 2017/8/30 12:46 <BR>
  * Description: <BR>
