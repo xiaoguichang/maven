@@ -30,13 +30,6 @@ public class DiscardServerHandler extends ChannelInboundHandlerAdapter {
     }
 
     @Override
-    public void channelUnregistered(ChannelHandlerContext ctx) throws Exception {
-        logger.info("channelUnregistered begin ....");
-        super.channelUnregistered(ctx);
-        logger.info("channelUnregistered end ....");
-    }
-
-    @Override
     public void channelActive(ChannelHandlerContext ctx) throws Exception {
         logger.info("channelActive begin ....");
         super.channelActive(ctx);

@@ -285,7 +285,20 @@
             <artifactId>netty-all</artifactId>
             <version>4.1.15.Final</version>
         </dependency>
+
+        <dependency>
+            <groupId>org.msgpack</groupId>
+            <artifactId>msgpack</artifactId>
+            <version>0.6.12</version>
+        </dependency>
+        <!--<dependency>
+            <groupId>io.netty</groupId>
+            <artifactId>netty-all</artifactId>
+            <version>5.0.0.Alpha1</version>
+        </dependency>-->
     </dependencies>
+
+
 
     <build>
         <plugins>
