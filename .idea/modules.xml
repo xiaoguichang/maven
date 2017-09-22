@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/.idea/maven.iml" filepath="$PROJECT_DIR$/.idea/maven.iml" />
+      <module fileurl="file://$PROJECT_DIR$/maven-activiti/maven-activiti.iml" filepath="$PROJECT_DIR$/maven-activiti/maven-activiti.iml" />
+      <module fileurl="file://$PROJECT_DIR$/maven-base/maven-base.iml" filepath="$PROJECT_DIR$/maven-base/maven-base.iml" />
+      <module fileurl="file://$PROJECT_DIR$/maven-common/maven-common.iml" filepath="$PROJECT_DIR$/maven-common/maven-common.iml" />
+      <module fileurl="file://$PROJECT_DIR$/maven-jvm/maven-jvm.iml" filepath="$PROJECT_DIR$/maven-jvm/maven-jvm.iml" />
+      <module fileurl="file://$PROJECT_DIR$/maven-pms/maven-pms.iml" filepath="$PROJECT_DIR$/maven-pms/maven-pms.iml" />
+      <module fileurl="file://F:\git\maven\maven-springmvc\maven-springmvc (2).iml" filepath="F:\git\maven\maven-springmvc\maven-springmvc (2).iml" />
+      <module fileurl="file://$PROJECT_DIR$/maven-system/maven-system.iml" filepath="$PROJECT_DIR$/maven-system/maven-system.iml" />
+      <module fileurl="file://$PROJECT_DIR$/maven-wechat/maven-wechat.iml" filepath="$PROJECT_DIR$/maven-wechat/maven-wechat.iml" />
+    </modules>
+  </component>
+</project>
