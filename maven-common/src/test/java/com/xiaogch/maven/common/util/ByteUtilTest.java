@@ -1,12 +1,8 @@
 package com.xiaogch.maven.common.util;
 
-import com.sun.org.apache.regexp.internal.RE;
 import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
-
-import static org.junit.Assert.*;
 
 public class ByteUtilTest {
 
@@ -16,11 +12,11 @@ public class ByteUtilTest {
     public void long2Byte() throws Exception {
         logger.info(MessageDigestUtil.md5("123456"));
 
-       byte[] result = ByteUtil.long2Byte(19999999990l);
-       assertEquals(19999999990l , ByteUtil.bytes2Long(result));
-
-       logger.info("80090l hex is :  {}" , ByteUtil.encodeHex(result));
-       logger.info("80090l hex is (system):  {}" , Long.toHexString(19999999990l));
+//       byte[] result = ByteUtil.long2Byte(19999999990l);
+//       assertEquals(19999999990l , ByteUtil.bytes2Long(result));
+//
+//       logger.info("80090l hex is :  {}" , ByteUtil.encodeHex(result));
+//       loggergger.info("80090l hex is (system):  {}" , Long.toHexString(19999999990l));
     }
 
 }
