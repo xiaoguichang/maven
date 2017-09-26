@@ -9,7 +9,9 @@ import org.slf4j.LoggerFactory;
 import java.io.InputStream;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
+import java.util.HashMap;
 import java.util.Iterator;
+import java.util.Map;
 
 public class XmlDom4jUtil {
 
@@ -21,14 +23,21 @@ public class XmlDom4jUtil {
         if (document != null) {
             T t = tClass.newInstance();
             Element element = document.getRootElement();
-            parseElement(element , t);
+            parseElement(element , t );
             return t;
         }
         return null;
     }
 
+
     private static <T> void parseElement(Element element , T t) {
-        if (element == null || t == null) {
+        Map<String , Object> ignoreTagsMap = new HashMap<String , Object>();
+        ignoreTagsMap.put("xml" , 1);
+        parseElement(element , t , ignoreTagsMap);
+    }
+
+    private static <T> void parseElement(Element element , T t , Map<String , Object> ignoreTagsMap) {
+        if (element == null || t == null || ignoreTagsMap == null) {
             return;
         }
         Class tClass = t.getClass();
@@ -39,9 +48,8 @@ public class XmlDom4jUtil {
         }
 
         String tagName = element.getName();
-        if (!"xml".equalsIgnoreCase(tagName)) {
+        if (ignoreTagsMap.get(tagName) != null) {
             String text = element.getText();
-
             String setMethodName = "set" + tagName.substring(0 , 1).toUpperCase() + tagName.substring(1);
             try {
                 Method method = tClass.getMethod(setMethodName , String.class);
@@ -54,7 +62,5 @@ public class XmlDom4jUtil {
                 logger.error("parseElement InvocationTargetException" , e);
             }
         }
-
     }
-
 }

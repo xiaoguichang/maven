@@ -9,29 +9,35 @@ import java.security.InvalidKeyException;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
+/**
+ * Author: guich <BR>
+ * Version: v 1.0 <BR>
+ * Date: 2017/9/26 16:55 <BR>
+ * Description: 基本的签名算法封装 <BR>
+ * Function List: <BR>
+ */
 public class MessageDigestUtil {
-
     private static final String ALGORITHM_MD2 = "MD2";
     private static final String ALGORITHM_MD5 = "MD5";
     private static final String ALGORITHM_SHA1 = "SHA1";
-    private static final String ALGORITHM_SHA_256 = "SHA-256";
-    private static final String ALGORITHM_SHA_384 = "SHA-384";
-    private static final String ALGORITHM_SHA_512 = "SHA-512";
+//    private static final String ALGORITHM_SHA_256 = "SHA-256";
+//    private static final String ALGORITHM_SHA_384 = "SHA-384";
+//    private static final String ALGORITHM_SHA_512 = "SHA-512";
 
     private static final String ALGORITHM_HMACMD2 = "HmacMD2";
-    private static final String ALGORITHM_HMACMD5 = "HmacMD5";
-    private static final String ALGORITHM_HMACSHA1 = "HmacSHA1";
-    private static final String ALGORITHM_HMACSHA256 = "HmacSHA256";
-    private static final String ALGORITHM_HMACSHA384 = "HmacSHA384";
-    private static final String ALGORITHM_HMACSHA512 = "HmacSHA512";
+//    private static final String ALGORITHM_HMACMD5 = "HmacMD5";
+//    private static final String ALGORITHM_HMACSHA1 = "HmacSHA1";
+//    private static final String ALGORITHM_HMACSHA256 = "HmacSHA256";
+//    private static final String ALGORITHM_HMACSHA384 = "HmacSHA384";
+//    private static final String ALGORITHM_HMACSHA512 = "HmacSHA512";
 
     private static final String DEFAULT_ENCODING = "UTF-8";
 
-    public static String sha1(String source) throws NoSuchAlgorithmException , UnsupportedEncodingException {
-       return sha1(source , DEFAULT_ENCODING);
+    public static String sha1(String source) throws NoSuchAlgorithmException, UnsupportedEncodingException {
+        return sha1(source , DEFAULT_ENCODING);
     }
 
-    public static String sha1(String source , String encoding) throws NoSuchAlgorithmException , UnsupportedEncodingException {
+    public static String sha1(String source , String encoding) throws NoSuchAlgorithmException, UnsupportedEncodingException {
         Assert.notNull(source , "digest source con't be null");
         Assert.notNull(source , "digest encoding con't be null");
         byte[] sourceBytes = source.getBytes(encoding);
@@ -45,11 +51,11 @@ public class MessageDigestUtil {
         return ByteUtil.encodeHex(result);
     }
 
-    public static String md2(String source) throws NoSuchAlgorithmException , UnsupportedEncodingException {
+    public static String md2(String source) throws NoSuchAlgorithmException, UnsupportedEncodingException {
         return md2(source , DEFAULT_ENCODING);
     }
 
-    public static String md2(String source , String encoding) throws NoSuchAlgorithmException , UnsupportedEncodingException {
+    public static String md2(String source , String encoding) throws NoSuchAlgorithmException, UnsupportedEncodingException {
         Assert.notNull(source , "digest source con't be null");
         Assert.notNull(source , "digest encoding con't be null");
         byte[] sourceBytes = source.getBytes(encoding);
@@ -63,11 +69,11 @@ public class MessageDigestUtil {
         return ByteUtil.encodeHex(result);
     }
 
-    public static String md5(String source) throws NoSuchAlgorithmException , UnsupportedEncodingException {
+    public static String md5(String source) throws NoSuchAlgorithmException, UnsupportedEncodingException {
         return md5(source , DEFAULT_ENCODING);
     }
 
-    public static String md5(String source , String encoding) throws NoSuchAlgorithmException , UnsupportedEncodingException {
+    public static String md5(String source , String encoding) throws NoSuchAlgorithmException, UnsupportedEncodingException {
         Assert.notNull(source , "digest source con't be null");
         Assert.notNull(source , "digest encoding con't be null");
         byte[] sourceBytes = source.getBytes(encoding);
@@ -82,7 +88,7 @@ public class MessageDigestUtil {
     }
 
 
-    public static String hmacMd2(String source , String securityKey) throws NoSuchAlgorithmException , UnsupportedEncodingException , InvalidKeyException{
+    public static String hmacMd2(String source , String securityKey) throws NoSuchAlgorithmException, UnsupportedEncodingException, InvalidKeyException {
         return hmacMd2(source , securityKey , DEFAULT_ENCODING);
     }
 
@@ -100,5 +106,4 @@ public class MessageDigestUtil {
         byte[] result = mac.doFinal(source);
         return ByteUtil.encodeHex(result);
     }
-
 }

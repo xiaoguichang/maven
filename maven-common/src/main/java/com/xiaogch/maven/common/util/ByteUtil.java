@@ -7,6 +7,13 @@ import org.springframework.util.Assert;
 import java.io.UnsupportedEncodingException;
 import java.util.regex.Pattern;
 
+/**
+ * Author: guich <BR>
+ * Version: v 1.0 <BR>
+ * Date: 2017/9/26 16:55 <BR>
+ * Description: 基本的字节操作封装 <BR>
+ * Function List: <BR>
+ */
 public class ByteUtil {
 
     private static final Logger logger = LoggerFactory.getLogger(ByteUtil.class);
@@ -93,7 +100,7 @@ public class ByteUtil {
         byte bts[] = new byte[tempHex.length() / 2];
         for (int index = 0 ; index < tempHex.length() ; index = index + 2) {
             String subStr = tempHex.substring(index, index + 2);
-            bts[index/2] = (byte)((int)Integer.valueOf(subStr, 16));
+            bts[index/2] = (byte)((int) Integer.valueOf(subStr, 16));
         }
         return bts;
     }
