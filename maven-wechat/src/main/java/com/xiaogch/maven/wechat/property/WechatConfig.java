@@ -1,14 +1,13 @@
-package com.xiaogch.maven.wechat.config;
+package com.xiaogch.maven.wechat.property;
 
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 import org.springframework.util.Assert;
 
 /**
  * Author: guich <BR>
  * Version: v 1.0 <BR>
- * Date: 2017/8/30 14:19 <BR>
+ * Date: 2017/10/19 16:05 <BR>
  * Description: <BR>
  * Function List: <BR>
  */
@@ -114,4 +113,5 @@ public class WechatConfig {
     public void setAuthorizeUrl(String authorizeUrl) {
         this.authorizeUrl = authorizeUrl;
     }
+
 }
