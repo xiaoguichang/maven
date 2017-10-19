@@ -1,15 +1,15 @@
 package com.xiaogch.maven.pms.config;
 
 import com.xiaogch.maven.common.util.SpringContextHolder;
-import com.xiaogch.maven.wechat.config.WechatConfig;
+import com.xiaogch.maven.wechat.config.WechatConfiguration;
 import org.springframework.context.annotation.*;
 import org.springframework.context.support.PropertySourcesPlaceholderConfigurer;
 
 @Configuration
-@Import({WechatConfig.class , MasterDataBaseConfig.class})
+@Import({WechatConfiguration.class , MasterDataBaseConfiguration.class})
 @PropertySource({"classpath:system.properties"})
 @ComponentScan({"com.xiaogch.maven.*"})
-public class ApplicationConfig {
+public class ApplicationConfiguration {
 
     @Bean
     public PropertySourcesPlaceholderConfigurer propertyConfigInDev() {

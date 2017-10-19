@@ -10,6 +10,6 @@ import org.springframework.context.annotation.Configuration;
  * Function List: <BR>
  */
 @Configuration
-public class SystemApplictionConfig {
+public class SystemApplictionConfiguration {
 
 }

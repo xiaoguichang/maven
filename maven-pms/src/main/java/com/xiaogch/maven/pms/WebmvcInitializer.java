@@ -2,8 +2,8 @@ package com.xiaogch.maven.pms;
 
 
 import ch.qos.logback.ext.spring.web.LogbackConfigListener;
-import com.xiaogch.maven.pms.config.ApplicationConfig;
-import com.xiaogch.maven.pms.config.WebConfig;
+import com.xiaogch.maven.pms.config.ApplicationConfiguration;
+import com.xiaogch.maven.pms.config.WebConfiguration;
 import org.springframework.web.filter.CharacterEncodingFilter;
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
 
@@ -25,12 +25,12 @@ public class WebmvcInitializer extends AbstractAnnotationConfigDispatcherServlet
 
     @Override
     protected Class<?>[] getRootConfigClasses() {
-        return new Class[]{ApplicationConfig.class};
+        return new Class[]{ApplicationConfiguration.class};
     }
 
     @Override
     protected Class<?>[] getServletConfigClasses() {
-        return new Class[]{WebConfig.class};
+        return new Class[]{WebConfiguration.class};
     }
 
     @Override

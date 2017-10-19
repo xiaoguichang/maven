@@ -24,7 +24,7 @@ import javax.sql.DataSource;
  */
 @Configuration
 @MapperScan(basePackages = "com.xiaogch.maven.*.dao.scan" , sqlSessionFactoryRef = "masterSqlSessionFactory")
-public class MasterDataBaseConfig {
+public class MasterDataBaseConfiguration {
 
     Logger logger = LoggerFactory.getLogger(getClass());
 

@@ -1,6 +1,6 @@
 package com.xiaogch.maven.pms.config;
 
-import com.xiaogch.maven.pms.websocket.WebSocketConfig;
+import com.xiaogch.maven.pms.websocket.WebSocketConfiguration;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
@@ -28,8 +28,8 @@ import java.util.List;
 @Configuration
 @EnableWebMvc
 @ComponentScan({"com.xiaogch.maven.*.web"})
-@Import({WebSocketConfig.class})
-public class WebConfig extends WebMvcConfigurerAdapter {
+@Import({WebSocketConfiguration.class})
+public class WebConfiguration extends WebMvcConfigurerAdapter {
 
     @Bean
     public ViewResolver viewResolver() {
