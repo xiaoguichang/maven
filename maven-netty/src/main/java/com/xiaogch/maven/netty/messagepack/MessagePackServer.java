@@ -1,21 +1,17 @@
 package com.xiaogch.maven.netty.messagepack;
 
-import com.xiaogch.maven.netty.timer.TimerServer;
 import io.netty.bootstrap.ServerBootstrap;
 import io.netty.buffer.ByteBuf;
-import io.netty.buffer.Unpooled;
 import io.netty.channel.*;
 import io.netty.channel.nio.NioEventLoopGroup;
 import io.netty.channel.socket.SocketChannel;
 import io.netty.channel.socket.nio.NioServerSocketChannel;
 import io.netty.handler.codec.LengthFieldBasedFrameDecoder;
-import io.netty.handler.codec.LineBasedFrameDecoder;
+import io.netty.handler.codec.LengthFieldPrepender;
 import io.netty.handler.codec.string.StringDecoder;
+import io.netty.handler.codec.string.StringEncoder;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 
 /**
  * Author: guich <BR>
@@ -24,12 +20,12 @@ import java.time.format.DateTimeFormatter;
  * Description: <BR>
  * Function List: <BR>
  */
-public class MessagepackServer {
+public class MessagePackServer {
 
     Logger logger = LoggerFactory.getLogger(getClass());
 
     public static void main(String...argvs) {
-        MessagepackServer messagepackServer = new MessagepackServer();
+        MessagePackServer messagepackServer = new MessagePackServer();
         messagepackServer.bind(8080);
     }
 
@@ -44,10 +40,14 @@ public class MessagepackServer {
                     .childHandler(new ChannelInitializer<SocketChannel>(){
                         @Override
                         protected void initChannel(SocketChannel socketChannel) throws Exception {
-                            socketChannel.pipeline()
-                                    .addLast("frameDecoder" , new LengthFieldBasedFrameDecoder(65535,0,2,0,2))
-                                    .addLast(new StringDecoder())
-                                    .addLast(new MessagepackServerHandler());
+                            //LengthFieldBasedFrameDecoder用于处理半包消息
+                            //这样后面的MsgpackDecoder接收的永远是整包消息
+                            socketChannel.pipeline().addLast("frameDecoder",new LengthFieldBasedFrameDecoder(65535,0,2,0,2));
+                            socketChannel.pipeline().addLast("msgpack decoder",new MessagePackDecoder());
+                            //在ByteBuf之前增加2个字节的消息长度字段
+                            socketChannel.pipeline().addLast("frameEncoder",new LengthFieldPrepender(2));
+                            socketChannel.pipeline().addLast("msgpack encoder",new MessagePackEncoder());
+                            socketChannel.pipeline().addLast(new MessagepackServerHandler());
                         }
                     });
             ChannelFuture channelFuture = b.bind(port).sync();
@@ -67,51 +67,9 @@ public class MessagepackServer {
         }
 
         @Override
-        public void channelRegistered(ChannelHandlerContext ctx) throws Exception {
-            super.channelRegistered(ctx);
-        }
-
-
-        @Override
-        public void channelActive(ChannelHandlerContext ctx) throws Exception {
-            super.channelActive(ctx);
-        }
-
-        @Override
-        public void channelInactive(ChannelHandlerContext ctx) throws Exception {
-            super.channelInactive(ctx);
-        }
-
-        @Override
         public void channelRead(ChannelHandlerContext ctx, Object msg) throws Exception {
-//            String message = (String) msg;
-//            logger.info("receive message is {}" , message);
-//            String str;
-//            if ("get now time".equalsIgnoreCase(message)) {
-//                str = "now is" + LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
-//            } else {
-//                str = "unknown message";
-//            }
-//            logger.info("response message is {}" , str + System.getProperty("line.separator"));
-//            byte[] bytes = (str + System.getProperty("line.separator")).getBytes();
-//            ByteBuf byteBuf = Unpooled.buffer(bytes.length);
-//            byteBuf.writeBytes(bytes);
-//            ctx.writeAndFlush(byteBuf);
-        }
-
-        @Override
-        public void channelReadComplete(ChannelHandlerContext ctx) throws Exception {
-            super.channelReadComplete(ctx);
-        }
-
-        @Override
-        public void userEventTriggered(ChannelHandlerContext ctx, Object evt) throws Exception {
-            super.userEventTriggered(ctx, evt);
-        }
-
-        @Override
-        public void channelWritabilityChanged(ChannelHandlerContext ctx) throws Exception {
-            super.channelWritabilityChanged(ctx);
+            logger.info("receive message is {}" , msg);
+            ctx.write(msg);
         }
 
         @Override

@@ -67,10 +67,12 @@ public class TimerClient {
 
         @Override
         public void channelActive(ChannelHandlerContext ctx) throws Exception {
-            String line = "get now time" + System.getProperty("line.separator");
-            ByteBuf byteBuf = Unpooled.buffer(line.getBytes().length);
-            byteBuf.writeBytes(line.getBytes());
-            ctx.writeAndFlush(byteBuf);
+            for (int index = 0 ; index < 10 ; index ++) {
+                String line = "get now time" + System.getProperty("line.separator");
+                ByteBuf byteBuf = Unpooled.buffer(line.getBytes().length);
+                byteBuf.writeBytes(line.getBytes());
+                ctx.writeAndFlush(byteBuf);
+            }
         }
 
         @Override

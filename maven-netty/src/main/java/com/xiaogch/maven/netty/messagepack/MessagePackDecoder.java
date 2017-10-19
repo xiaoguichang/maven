@@ -1,23 +1,22 @@
 package com.xiaogch.maven.netty.messagepack;
+import java.util.List;
+
+import org.msgpack.MessagePack;
 
 import io.netty.buffer.ByteBuf;
 import io.netty.channel.ChannelHandlerContext;
-import io.netty.handler.codec.ByteToMessageDecoder;
+import io.netty.handler.codec.MessageToMessageDecoder;
 
-import java.util.List;
-
-/**
- * Author: guich <BR>
- * Version: v 1.0 <BR>
- * Date: 2017/9/14 18:04 <BR>
- * Description: <BR>
- * Function List: <BR>
- */
-public class MessagePackDecoder extends ByteToMessageDecoder {
+public class MessagePackDecoder extends MessageToMessageDecoder<ByteBuf> {
 
     @Override
-    protected void decode(ChannelHandlerContext channelHandlerContext, ByteBuf byteBuf, List<Object> list) throws Exception {
-
-
+    protected void decode(ChannelHandlerContext arg0, ByteBuf arg1, List<Object> arg2) throws Exception {
+        final byte[] array;
+        final int length=arg1.readableBytes();
+        array = new byte[length];
+        arg1.getBytes(arg1.readerIndex(), array,0,length);
+        MessagePack msgpack=new MessagePack();
+        arg2.add(msgpack.read(array));
     }
+
 }

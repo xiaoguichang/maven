@@ -1,6 +1,6 @@
 package com.xiaogch.maven.wechat.config;
 
-import com.xiaogch.maven.common.redis.JedisCache;
+import com.xiaogch.maven.common.redis.JedisService;
 import org.apache.commons.pool2.impl.GenericObjectPoolConfig;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
@@ -21,13 +21,13 @@ public class RedisConfiguration {
     @Value("${redis.maxTotal:5000}")
     private int maxTotal;
 
-    @Bean(name = "jedisCache")
-    public JedisCache getJedisCache() {
+    @Bean(name = "jedisService")
+    public JedisService getJedisService() {
         GenericObjectPoolConfig poolConfig = new GenericObjectPoolConfig();
         poolConfig.setMaxIdle(maxIdle);
         poolConfig.setMaxTotal(maxTotal);
         poolConfig.setMinIdle(minIdle);
         JedisPool jedisPool = new JedisPool(poolConfig , host , port);
-        return new JedisCache(jedisPool);
+        return new JedisService(jedisPool);
     }
 }

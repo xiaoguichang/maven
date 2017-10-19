@@ -41,9 +41,6 @@ public class WebConfig extends WebMvcConfigurerAdapter {
     }
 
 
-
-
-
     @Bean(name = "requestMappingHandlerAdapter")
     public RequestMappingHandlerAdapter getRequestMappingHandlerAdapter() {
         RequestMappingHandlerAdapter requestMappingHandlerAdapter = new RequestMappingHandlerAdapter();

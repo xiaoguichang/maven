@@ -2,8 +2,8 @@ package com.xiaogch.maven.wechat.web;
 
 import com.xiaogch.maven.common.util.MessageDigestUtil;
 import com.xiaogch.maven.common.util.XmlDom4jUtil;
-import com.xiaogch.maven.wechat.config.WeiXinConfig;
-import com.xiaogch.maven.wechat.core.entity.ReceivedMsgEntity;
+import com.xiaogch.maven.wechat.common.message.dto.ReceivedMsgDto;
+import com.xiaogch.maven.wechat.config.WechatConfig;
 import com.xiaogch.maven.wechat.core.service.MessageConsumeService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -26,7 +26,7 @@ public class WechatServiceController {
     Logger logger = LoggerFactory.getLogger(getClass());
 
     @Autowired
-    private WeiXinConfig weiXinConfig;
+    private WechatConfig wechatConfig;
 
     @Autowired
     private MessageConsumeService messageConsumeService;
@@ -54,7 +54,7 @@ public class WechatServiceController {
         logger.info("request from WeiXin Server signature={} , timestamp={} , nonce={} , echostr={}" ,
                 signature , timestamp , nonce, echostr);
 
-        String[] arr = new String[]{weiXinConfig.getToken() , timestamp , nonce };
+        String[] arr = new String[]{wechatConfig.getToken() , timestamp , nonce };
         Arrays.sort(arr);
         StringBuilder builder = new StringBuilder();
         for (String tmp : arr) {
@@ -86,13 +86,12 @@ public class WechatServiceController {
             logger.info(" request data is {}" , sb);
 
             //ReceivedMsgEntity receivedMsgEntity = XmlDom4jUtil.praseToBean(request.getInputStream() , ReceivedMsgEntity.class);
-            ReceivedMsgEntity receivedMsgEntity = XmlDom4jUtil.praseToBean(new ByteArrayInputStream(sb.toString().getBytes()), ReceivedMsgEntity.class);
+            ReceivedMsgDto receivedMsgDto = XmlDom4jUtil.praseToBean(new ByteArrayInputStream(sb.toString().getBytes()), ReceivedMsgDto.class);
 
-            return messageConsumeService.consume(receivedMsgEntity);
+            return messageConsumeService.consume(receivedMsgDto);
         } catch (Exception e) {
             logger.error("parse the message from weixin server exception" , e);
         }
-
         return "";
     }
 }

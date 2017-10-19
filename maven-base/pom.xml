@@ -307,6 +307,18 @@
             <artifactId>netty-all</artifactId>
             <version>5.0.0.Alpha1</version>
         </dependency>-->
+
+        <dependency>
+            <groupId>commons-net</groupId>
+            <artifactId>commons-net</artifactId>
+            <version>3.5</version>
+        </dependency>
+
+        <dependency>
+            <groupId>net.coobird</groupId>
+            <artifactId>thumbnailator</artifactId>
+            <version>0.4.8</version>
+        </dependency>
     </dependencies>
 
 

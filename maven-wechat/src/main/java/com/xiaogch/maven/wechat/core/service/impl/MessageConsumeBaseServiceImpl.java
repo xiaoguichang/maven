@@ -1,7 +1,7 @@
 package com.xiaogch.maven.wechat.core.service.impl;
 
 
-import com.xiaogch.maven.wechat.core.entity.*;
+import com.xiaogch.maven.wechat.common.message.dto.*;
 import com.xiaogch.maven.wechat.core.service.MessageConsumeService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -13,108 +13,124 @@ public class MessageConsumeBaseServiceImpl implements MessageConsumeService {
     Logger logger = LoggerFactory.getLogger(getClass());
 
     @Override
-    public String consume(ReceivedMsgEntity receivedMsgEntity) {
+    public String consume(ReceivedMsgDto receivedMsgDto) {
 
-        if (receivedMsgEntity == null) {
+        if (receivedMsgDto == null) {
             return "";
         }
 
-        if (MsgEntitiy.MSGTYPE_IMAGE.equalsIgnoreCase(receivedMsgEntity.getMsgType())) {
-            return consumeImageMessage(receivedMsgEntity.toImageMsgEntity());
-        } else if (MsgEntitiy.MSGTYPE_LINK.equalsIgnoreCase(receivedMsgEntity.getMsgType())) {
-            return consumeLinkMessage(receivedMsgEntity.toLinkMsgEntity());
-        } else if (MsgEntitiy.MSGTYPE_LOCATION.equalsIgnoreCase(receivedMsgEntity.getMsgType())) {
-            return consumeLocationMessage(receivedMsgEntity.toLocationMsgEntity());
-        } else if (MsgEntitiy.MSGTYPE_SHORTVIDEO.equalsIgnoreCase(receivedMsgEntity.getMsgType())
-                || MsgEntitiy.MSGTYPE_VIDEO.equalsIgnoreCase(receivedMsgEntity.getMsgType())) {
-            return consumeVideoMessage(receivedMsgEntity.toVideoMsgEntity());
-        } else if (MsgEntitiy.MSGTYPE_VOICE.equalsIgnoreCase(receivedMsgEntity.getMsgType())) {
-            return consumeVoiceMessage(receivedMsgEntity.toVoiceMsgEntity());
-        } else if (MsgEntitiy.MSGTYPE_TEXT.equalsIgnoreCase(receivedMsgEntity.getMsgType())) {
-            return consumeTextMessage(receivedMsgEntity.toTextMsgEntity());
-        } else if (MsgEntitiy.MSGTYPE_EVENT.equalsIgnoreCase(receivedMsgEntity.getMsgType())) {
-            return consumEventMessage(receivedMsgEntity);
+        if (MsgDto.MSGTYPE_IMAGE.equalsIgnoreCase(receivedMsgDto.getMsgType())) {
+            return consumeImageMessage(receivedMsgDto.toImageMsgDto());
+        } else if (MsgDto.MSGTYPE_LINK.equalsIgnoreCase(receivedMsgDto.getMsgType())) {
+            return consumeLinkMessage(receivedMsgDto.toLinkMsgDto());
+        } else if (MsgDto.MSGTYPE_LOCATION.equalsIgnoreCase(receivedMsgDto.getMsgType())) {
+            return consumeLocationMessage(receivedMsgDto.toLocationMsgDto());
+        } else if (MsgDto.MSGTYPE_SHORTVIDEO.equalsIgnoreCase(receivedMsgDto.getMsgType())
+                || MsgDto.MSGTYPE_VIDEO.equalsIgnoreCase(receivedMsgDto.getMsgType())) {
+            return consumeVideoMessage(receivedMsgDto.toVideoMsgDto());
+        } else if (MsgDto.MSGTYPE_VOICE.equalsIgnoreCase(receivedMsgDto.getMsgType())) {
+            return consumeVoiceMessage(receivedMsgDto.toVoiceMsgDto());
+        } else if (MsgDto.MSGTYPE_TEXT.equalsIgnoreCase(receivedMsgDto.getMsgType())) {
+            return consumeTextMessage(receivedMsgDto.toTextMsgDto());
+        } else if (MsgDto.MSGTYPE_EVENT.equalsIgnoreCase(receivedMsgDto.getMsgType())) {
+            return consumEventMessage(receivedMsgDto);
         }
-        logger.info("unknown msgType : {}" , receivedMsgEntity.getMsgType());
+        logger.info("unknown msgType : {}" , receivedMsgDto.getMsgType());
         return "";
     }
 
-    protected String consumEventMessage(ReceivedMsgEntity receivedMsgEntity) {
-        if (MsgEntitiy.EVENT_CLICK.equalsIgnoreCase(receivedMsgEntity.getEvent())) {
-            return consumeClickEventMessage(receivedMsgEntity.toClickEventMsgEntity());
-        } else if (MsgEntitiy.EVENT_LOCATION.equalsIgnoreCase(receivedMsgEntity.getEvent())) {
-            return consumeLocationEventMessage(receivedMsgEntity.toLocationEventMsgEntity());
-        } else if (MsgEntitiy.EVENT_SCAN.equalsIgnoreCase(receivedMsgEntity.getEvent())) {
-            return consumeScanEventMessage(receivedMsgEntity.toScanEventMsgEntity());
-        } else if (MsgEntitiy.EVENT_SUBSCRIBE.equalsIgnoreCase(receivedMsgEntity.getEvent())) {
-            return consumeSubscribeEventMessage(receivedMsgEntity.toSubscribeEventMsgEntity());
-        } else if (MsgEntitiy.EVENT_UNSUBSCRIBE.equalsIgnoreCase(receivedMsgEntity.getEvent())) {
-            return consumeUnSubscribeEventMessage(receivedMsgEntity.toUnSubscribeEventMsgEntity());
-        } else if (MsgEntitiy.EVENT_VIEW.equalsIgnoreCase(receivedMsgEntity.getEvent())) {
-            return consumeViewEventMessage(receivedMsgEntity.toViewEventMsgEntity());
+    protected String consumEventMessage(ReceivedMsgDto receivedMsgDto) {
+        if (MsgDto.EVENT_CLICK.equalsIgnoreCase(receivedMsgDto.getEvent())) {
+            return consumeClickEventMessage(receivedMsgDto.toClickEventMsgDto());
+        } else if (MsgDto.EVENT_LOCATION.equalsIgnoreCase(receivedMsgDto.getEvent())) {
+            return consumeLocationEventMessage(receivedMsgDto.toLocationEventMsgDto());
+        } else if (MsgDto.EVENT_SCAN.equalsIgnoreCase(receivedMsgDto.getEvent())) {
+            return consumeScanEventMessage(receivedMsgDto.toScanEventMsgDto());
+        } else if (MsgDto.EVENT_SUBSCRIBE.equalsIgnoreCase(receivedMsgDto.getEvent())) {
+            return consumeSubscribeEventMessage(receivedMsgDto.toSubscribeEventMsgDto());
+        } else if (MsgDto.EVENT_UNSUBSCRIBE.equalsIgnoreCase(receivedMsgDto.getEvent())) {
+            return consumeUnSubscribeEventMessage(receivedMsgDto.toUnSubscribeEventMsgDto());
+        } else if (MsgDto.EVENT_VIEW.equalsIgnoreCase(receivedMsgDto.getEvent())) {
+            return consumeViewEventMessage(receivedMsgDto.toViewEventMsgDto());
         }
-        logger.info("unknown vent : {}" , receivedMsgEntity.getEvent());
+        logger.info("unknown vent : {}" , receivedMsgDto.getEvent());
         return "";
     }
 
-    protected String consumeViewEventMessage(ViewEventMsgEntity viewEventMsgEntity) {
-        logger.info("message info : {}" , viewEventMsgEntity);
+    protected String consumeViewEventMessage(ViewEventMsgDto viewEventMsgDto) {
+        logger.info("message info : {}" , viewEventMsgDto);
         return "";
     }
 
-    protected String consumeUnSubscribeEventMessage(UnSubscribeEventMsgEntity unSubscribeEventMsgEntity) {
-        logger.info("message info : {}" , unSubscribeEventMsgEntity);
+    protected String consumeUnSubscribeEventMessage(UnSubscribeEventMsgDto unSubscribeEventMsgDto) {
+        logger.info("message info : {}" , unSubscribeEventMsgDto);
         return "";
     }
 
-    protected String consumeSubscribeEventMessage(SubscribeEventMsgEntity subscribeEventMsgEntity) {
-        logger.info("message info : {}" , subscribeEventMsgEntity);
+    protected String consumeSubscribeEventMessage(SubscribeEventMsgDto subscribeEventMsgDto) {
+        logger.info("message info : {}" , subscribeEventMsgDto);
+        StringBuilder sb = new StringBuilder();
+        sb.append("<xml>")
+                .append("<ToUserName><![CDATA[").append(subscribeEventMsgDto.getFromUserName()).append("]]></ToUserName>")
+                .append("<FromUserName><![CDATA[").append(subscribeEventMsgDto.getToUserName()).append("]]></FromUserName>")
+                .append("<CreateTime><![CDATA[").append(System.currentTimeMillis()).append("]]></FromUserName>")
+                .append("<MsgType><![CDATA[").append("text").append("]]></MsgType>")
+                .append("<Content><![CDATA[").append("欢迎关注我，我们一起嗨").append("]]></Content>")
+            .append("</xml>");
+        return sb.toString();
+    }
+
+    protected String consumeScanEventMessage(ScanEventMsgDto scanEventMsgDto) {
+        logger.info("message info : {}" , scanEventMsgDto);
         return "";
     }
 
-    protected String consumeScanEventMessage(ScanEventMsgEntity scanEventMsgEntity) {
-        logger.info("message info : {}" , scanEventMsgEntity);
+    protected String consumeLocationEventMessage(LocationEventMsgDto locationEventMsgDto) {
+        logger.info("message info : {}" , locationEventMsgDto);
         return "";
     }
 
-    protected String consumeLocationEventMessage(LocationEventMsgEntity locationEventMsgEntity) {
-        logger.info("message info : {}" , locationEventMsgEntity);
-        return "";
-    }
-
-    protected String consumeClickEventMessage(ClickEventMsgEntity clickEventMsgEntity) {
-        logger.info("message info : {}" , clickEventMsgEntity);
+    protected String consumeClickEventMessage(ClickEventMsgDto clickEventMsgDto) {
+        logger.info("message info : {}" , clickEventMsgDto);
         return "";
     }
 
 
-    protected String consumeImageMessage(ImageMsgEntity imageMsgEntity) {
-        logger.info("message info : {}" , imageMsgEntity);
+    protected String consumeImageMessage(ImageMsgDto imageMsgDto) {
+        logger.info("message info : {}" , imageMsgDto);
         return "";
     }
 
-    protected String consumeLinkMessage(LinkMsgEntity linkMsgEntity) {
-        logger.info("message info : {}" , linkMsgEntity);
+    protected String consumeLinkMessage(LinkMsgDto linkMsgDto) {
+        logger.info("message info : {}" , linkMsgDto);
         return "";
     }
 
-    protected String consumeLocationMessage(LocationMsgEntity locationMsgEntity) {
-        logger.info("message info : {}" , locationMsgEntity);
+    protected String consumeLocationMessage(LocationMsgDto locationMsgDto) {
+        logger.info("message info : {}" , locationMsgDto);
         return null;
     }
 
-    protected String consumeTextMessage(TextMsgEntity textMsgEntity) {
-        logger.info("message info : {}" , textMsgEntity);
+    protected String consumeTextMessage(TextMsgDto textMsgDto) {
+        logger.info("message info : {}" , textMsgDto);
+        StringBuilder sb = new StringBuilder();
+        sb.append("<xml>")
+                .append("<ToUserName><![CDATA[").append(textMsgDto.getFromUserName()).append("]]></ToUserName>")
+                .append("<FromUserName><![CDATA[").append(textMsgDto.getToUserName()).append("]]></FromUserName>")
+                .append("<CreateTime><![CDATA[").append(System.currentTimeMillis()).append("]]></FromUserName>")
+                .append("<MsgType><![CDATA[").append("text").append("]]></MsgType>")
+                .append("<Content><![CDATA[").append("对不起，小编不明白您的意思！").append("]]></Content>")
+                .append("</xml>");
+        return sb.toString();
+    }
+
+    protected String consumeVideoMessage(VideoMsgDto videoMsgDto) {
+        logger.info("message info : {}" , videoMsgDto);
         return "";
     }
 
-    protected String consumeVideoMessage(VideoMsgEntity videoMsgEntity) {
-        logger.info("message info : {}" , videoMsgEntity);
-        return "";
-    }
-
-    protected String consumeVoiceMessage(VoiceMsgEntity voiceMsgEntity) {
-        logger.info("message info : {}" , voiceMsgEntity);
+    protected String consumeVoiceMessage(VoiceMsgDto voiceMsgDto) {
+        logger.info("message info : {}" , voiceMsgDto);
         return "";
     }
 
